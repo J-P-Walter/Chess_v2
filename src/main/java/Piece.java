@@ -1,4 +1,6 @@
-public class Piece {
+import java.util.ArrayList;
+
+public abstract class Piece {
     protected int row, col;
     protected int color;
     private char name;
@@ -8,6 +10,7 @@ public class Piece {
         this.col = col;
         this.color = color;
     }
+    public abstract ArrayList<int[]> getMoves();
 
     public int getRow() {
         return row;
