@@ -75,7 +75,6 @@ public class Rook extends Piece{
             down++;
         }
 
-
         return validMoves;
     }
 
