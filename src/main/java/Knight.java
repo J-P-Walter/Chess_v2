@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
 public class Knight extends Piece{
-
     private char name = 'N';
     public Knight(int row, int col, int color) {
         super(row, col, color);
     }
 
+    /*
+        Knight moves in "L" shape, simply checks the 8 possible squares for valid moves
+     */
     @Override
     public ArrayList<int[]> getMoves() {
         Board board = Board.getInstance();
@@ -14,7 +16,7 @@ public class Knight extends Piece{
 
         //Up-up-left
         if (row-2 >= 0 && col-1 >= 0){
-            if (board.getBoard()[row-2][col-1].isOccupied() == false){
+            if (!board.getBoard()[row - 2][col - 1].isOccupied()){
                 validMoves.add(new int[]{row, col, row-2, col-1});
             }
             else if (board.getBoard()[row-2][col-1].getPiece().getColor() != color){
@@ -24,7 +26,7 @@ public class Knight extends Piece{
 
         //Up-up-right
         if (row-2 >= 0 && col+1 < board.getBoard().length){
-            if (board.getBoard()[row-2][col+1].isOccupied() == false){
+            if (!board.getBoard()[row - 2][col + 1].isOccupied()){
                 validMoves.add(new int[]{row, col, row-2, col+1});
             }
             else if (board.getBoard()[row-2][col+1].getPiece().getColor() != color){
@@ -34,7 +36,7 @@ public class Knight extends Piece{
 
         //Down-down-left
         if (row+2 < board.getBoard().length && col-1 >= 0){
-            if (board.getBoard()[row+2][col-1].isOccupied() == false){
+            if (!board.getBoard()[row + 2][col - 1].isOccupied()){
                 validMoves.add(new int[]{row, col, row+2, col-1});
             }
             else if (board.getBoard()[row+2][col-1].getPiece().getColor() != color){
@@ -44,7 +46,7 @@ public class Knight extends Piece{
 
         //Down-down-right
         if (row+2 < board.getBoard().length && col+1 < board.getBoard().length){
-            if (board.getBoard()[row+2][col+1].isOccupied() == false){
+            if (!board.getBoard()[row + 2][col + 1].isOccupied()){
                 validMoves.add(new int[]{row, col, row+2, col+1});
             }
             else if (board.getBoard()[row+2][col+1].getPiece().getColor() != color){
@@ -54,7 +56,7 @@ public class Knight extends Piece{
 
         //Up-left-left
         if (row-1 >= 0 && col-2 >= 0){
-            if (board.getBoard()[row-1][col-2].isOccupied() == false){
+            if (!board.getBoard()[row - 1][col - 2].isOccupied()){
                 validMoves.add(new int[]{row, col, row-1, col-2});
             }
             else if (board.getBoard()[row-1][col-2].getPiece().getColor() != color){
@@ -64,7 +66,7 @@ public class Knight extends Piece{
 
         //Up-right-right
         if (row-1 >= 0 && col+2 < board.getBoard().length){
-            if (board.getBoard()[row-1][col+2].isOccupied() == false){
+            if (!board.getBoard()[row - 1][col + 2].isOccupied()){
                 validMoves.add(new int[]{row, col, row-1, col+2});
             }
             else if (board.getBoard()[row-1][col+2].getPiece().getColor() != color){
@@ -74,7 +76,7 @@ public class Knight extends Piece{
 
         //Down-left-left
         if (row+1 < board.getBoard().length && col-2 >= 0){
-            if (board.getBoard()[row+1][col-2].isOccupied() == false){
+            if (!board.getBoard()[row + 1][col - 2].isOccupied()){
                 validMoves.add(new int[]{row, col, row+1, col-2});
             }
             else if (board.getBoard()[row+1][col-2].getPiece().getColor() != color){
@@ -84,15 +86,13 @@ public class Knight extends Piece{
 
         //Down-right-right
         if (row+1 < board.getBoard().length && col+2 < board.getBoard().length){
-            if (board.getBoard()[row+1][col+2].isOccupied() == false){
+            if (!board.getBoard()[row + 1][col + 2].isOccupied()){
                 validMoves.add(new int[]{row, col, row+1, col+2});
             }
             else if (board.getBoard()[row+1][col+2].getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row+1, col+2});
             }
         }
-
-
         return validMoves;
     }
 

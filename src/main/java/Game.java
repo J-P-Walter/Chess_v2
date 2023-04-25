@@ -1,6 +1,7 @@
 public class Game {
     static Board board;
 
+    //TODO: implement game logic
     public Game(){
         board = Board.getInstance();
     }

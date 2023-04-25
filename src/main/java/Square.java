@@ -11,9 +11,7 @@ public class Square {
     }
 
     public boolean isOccupied() {
-        if(piece != null)
-            return true;
-        return false;
+        return (piece != null);
     }
 
     public void putPiece(Piece piece){

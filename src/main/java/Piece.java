@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 
+/*
+    Abstract class for all Pieces
+ */
+
 public abstract class Piece {
     protected int row, col;
     protected int color;
-    private char name;
 
     public Piece(int row, int col, int color){
         this.row = row;
@@ -32,5 +35,5 @@ public abstract class Piece {
         return color;
     }
 
-    public char getName() {return name; }
+    public abstract char getName();
 }

@@ -6,6 +6,10 @@ public class Rook extends Piece{
         super(row, col, color);
     }
 
+    /*
+        Rooks move on orthogonals, so we check them by using 4 loops that add moves to the list and
+        end when a board edge is reached or when another piece occupies the square.
+     */
     @Override
     public ArrayList<int[]> getMoves(){
         Board board = Board.getInstance();
@@ -14,7 +18,7 @@ public class Rook extends Piece{
         //Left
         int left = 1;
         while (col-left >= 0){
-            if (board.getBoard()[row][col-left].isOccupied() == false){
+            if (!board.getBoard()[row][col - left].isOccupied()){
                 validMoves.add(new int[]{row, col, row, col-left});
             }
             else if (board.getBoard()[row][col-left].getPiece().getColor() != color){
@@ -30,7 +34,7 @@ public class Rook extends Piece{
         //Right
         int right = 1;
         while (col+right < board.getBoard().length){
-            if (board.getBoard()[row][col+right].isOccupied() == false){
+            if (!board.getBoard()[row][col + right].isOccupied()){
                 validMoves.add(new int[]{row, col, row, col+right});
             }
             else if (board.getBoard()[row][col+right].getPiece().getColor() != color){
@@ -46,7 +50,7 @@ public class Rook extends Piece{
         //Up
         int up = 1;
         while (row-up >= 0){
-            if (board.getBoard()[row-up][col].isOccupied() == false){
+            if (!board.getBoard()[row - up][col].isOccupied()){
                 validMoves.add(new int[]{row, col, row-up, col});
             }
             else if (board.getBoard()[row-up][col].getPiece().getColor() != color){
@@ -62,7 +66,7 @@ public class Rook extends Piece{
         //Down
         int down = 1;
         while (row+down < board.getBoard().length){
-            if (board.getBoard()[row+down][col].isOccupied() == false){
+            if (!board.getBoard()[row + down][col].isOccupied()){
                 validMoves.add(new int[]{row, col, row+down, col});
             }
             else if (board.getBoard()[row+down][col].getPiece().getColor() != color){
@@ -74,7 +78,6 @@ public class Rook extends Piece{
             }
             down++;
         }
-
         return validMoves;
     }
 

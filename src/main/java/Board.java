@@ -2,6 +2,7 @@ public class Board {
     private Square[][] board;
     private static Board instance = null;
 
+    //TODO: take in file for setup for easier testing
     public Board(){
         resetBoard();
     }
@@ -35,7 +36,6 @@ public class Board {
                 else {
                     System.out.print(p.getPiece().getName() + " ");
                 }
-
             }
             System.out.println();
             idx++;
