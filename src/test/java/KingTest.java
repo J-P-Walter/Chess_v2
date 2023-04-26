@@ -102,7 +102,46 @@ class KingTest {
         board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
 
         Assertions.assertEquals(8, king1.getMoves().size());
+    }
 
+
+    @Test
+    @DisplayName("Testing king check")
+    void king_check_left(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(4, 1, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check is blocked by own piece")
+    void king_check_left_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+        Rook whiteRook = new Rook(4, 2, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whiteRook);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(4, 1, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
     }
 
 }

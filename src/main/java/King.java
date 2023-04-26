@@ -89,7 +89,52 @@ public class King extends Piece{
         return validMoves;
     }
 
+    /*
+    Checks every direction the king could be attacked from
+    If an attacker is found, checks the type to make sure it can actually check the king
+        ex. a rook on a diagonal cannot, but a bishop can
+    To be used to determine if a player is in check and if moves are allowed
+        ex. you cannot put yourself in check
+*/
+    public boolean isChecked(Board checkBoard, int color){
+        //Left
+        int left = 1;
+        while (col-left >= 0){
+            Square currSquare = checkBoard.getBoard()[row][col - left];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (currSquare.getPiece().getName() == 'R' || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+            left++;
+        }
+        //Right
+
+        //Up
+
+        //Down
+
+        //Up-left
+
+        //Up-right
+
+        //Down-left
+
+        //Down-right
+        return false;
+    }
+
     public char getName() {
         return name;
     }
 }
+
+
+

@@ -18,10 +18,11 @@ public class Rook extends Piece{
         //Left
         int left = 1;
         while (col-left >= 0){
-            if (!board.getBoard()[row][col - left].isOccupied()){
+            Square currSquare = board.getBoard()[row][col - left];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row, col-left});
             }
-            else if (board.getBoard()[row][col-left].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row, col-left});
                 break;
             }
@@ -34,10 +35,11 @@ public class Rook extends Piece{
         //Right
         int right = 1;
         while (col+right < board.getBoard().length){
-            if (!board.getBoard()[row][col + right].isOccupied()){
+            Square currSquare = board.getBoard()[row][col + right];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row, col+right});
             }
-            else if (board.getBoard()[row][col+right].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row, col+right});
                 break;
             }
@@ -50,10 +52,11 @@ public class Rook extends Piece{
         //Up
         int up = 1;
         while (row-up >= 0){
-            if (!board.getBoard()[row - up][col].isOccupied()){
+            Square currSquare = board.getBoard()[row - up][col];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row-up, col});
             }
-            else if (board.getBoard()[row-up][col].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row-up, col});
                 break;
             }
@@ -66,10 +69,11 @@ public class Rook extends Piece{
         //Down
         int down = 1;
         while (row+down < board.getBoard().length){
-            if (!board.getBoard()[row + down][col].isOccupied()){
+            Square currSquare = board.getBoard()[row + down][col];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row+down, col});
             }
-            else if (board.getBoard()[row+down][col].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row+down, col});
                 break;
             }

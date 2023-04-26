@@ -18,10 +18,11 @@ public class Bishop extends Piece{
         //Up-left
         int idx = 1;
         while (row-idx >= 0 && col-idx >= 0){
-            if (!board.getBoard()[row-idx][col-idx].isOccupied()){
+            Square currSquare = board.getBoard()[row-idx][col-idx];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row-idx, col-idx});
             }
-            else if (board.getBoard()[row-idx][col-idx].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row-idx, col-idx});
                 break;
             }
@@ -34,10 +35,11 @@ public class Bishop extends Piece{
         //Up-right
         idx = 1;
         while (row-idx >= 0 && col+idx < board.getBoard().length){
-            if (!board.getBoard()[row-idx][col+idx].isOccupied()){
+            Square currSquare = board.getBoard()[row - idx][col + idx];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row-idx, col+idx});
             }
-            else if (board.getBoard()[row-idx][col+idx].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row-idx, col+idx});
                 break;
             }
@@ -50,10 +52,11 @@ public class Bishop extends Piece{
         //Down-left
         idx = 1;
         while (row+idx < board.getBoard().length && col-idx >= 0){
-            if (board.getBoard()[row+idx][col-idx].isOccupied() == false){
+            Square currSquare = board.getBoard()[row + idx][col - idx];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row+idx, col-idx});
             }
-            else if (board.getBoard()[row+idx][col-idx].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row+idx, col-idx});
                 break;
             }
@@ -66,10 +69,11 @@ public class Bishop extends Piece{
         //Down-right
         idx = 1;
         while (row+idx < board.getBoard().length && col+idx < board.getBoard().length){
-            if (board.getBoard()[row+idx][col+idx].isOccupied() == false){
+            Square currSquare = board.getBoard()[row + idx][col + idx];
+            if (!currSquare.isOccupied()){
                 validMoves.add(new int[]{row, col, row+idx, col+idx});
             }
-            else if (board.getBoard()[row+idx][col+idx].getPiece().getColor() != color){
+            else if (currSquare.getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row+idx, col+idx});
                 break;
             }

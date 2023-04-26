@@ -42,12 +42,12 @@ public class Pawn extends Piece {
         if (!board.getBoard()[row+direction][col].isOccupied()){
             validMoves.add(new int[]{row, col, row+direction, col});
         }
-        if (board.getBoard()[row+direction][col-1].isOccupied()){
+        if (col-1 >=0 && board.getBoard()[row+direction][col-1].isOccupied()){
             if (board.getBoard()[row+direction][col-1].getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row+direction, col-1});
             }
         }
-        if (board.getBoard()[row+direction][col+1].isOccupied()){
+        if (col+1 < board.getBoard().length && board.getBoard()[row+direction][col+1].isOccupied()){
             if (board.getBoard()[row+direction][col+1].getPiece().getColor() != color){
                 validMoves.add(new int[]{row, col, row+direction, col+1});
             }
