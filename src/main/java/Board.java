@@ -11,6 +11,11 @@ public class Board {
         resetBoard();
     }
 
+    //Copy constructor
+    public Board(Board board){
+        this.board = board.getBoard();
+    }
+
     public static Board getInstance(){
         if (instance == null) {
             instance = new Board();
@@ -125,6 +130,15 @@ public class Board {
         Piece movingPiece = board[oldRow][oldCol].getPiece();
         board[newRow][newCol].setPiece(movingPiece);
         board[oldRow][oldCol].setPiece(null);
+        movingPiece.setRow(newRow);
+        movingPiece.setCol(newCol);
+    }
+
+    public void movePieceBack(int[] move){
+        int newRow = move[0], newCol = move[1], oldRow = move[2], oldCol = move[3];
+        Piece movingPiece = this.board[oldRow][oldCol].getPiece();
+        this.board[newRow][newCol].setPiece(movingPiece);
+        this.board[oldRow][oldCol].setPiece(null);
         movingPiece.setRow(newRow);
         movingPiece.setCol(newCol);
     }

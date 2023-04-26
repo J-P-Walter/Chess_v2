@@ -5,6 +5,26 @@ public class Player {
     private int color;
 
     private ArrayList<Piece> pieces = new ArrayList<>();
+    private ArrayList<int[]> validMoves = new ArrayList<>();
+
+    public ArrayList<int[]> getValidMoves(){
+        for (Piece piece : pieces){
+            validMoves.addAll(piece.getMoves());
+        }
+
+        for (int i = validMoves.size()-1; i >= 0; i--){
+            Board.getInstance().movePiece(validMoves.get(i));
+            if (king.isChecked(Board.getInstance(), color)){
+                Board.getInstance().movePieceBack(validMoves.get(i));
+                validMoves.remove(i);
+            } else {
+                Board.getInstance().movePieceBack(validMoves.get(i));
+            };
+
+        }
+
+        return validMoves;
+    }
 
     King king;
 

@@ -58,6 +58,8 @@ class BoardTest {
 
         Assertions.assertEquals(16, whitePlayer.getPieces().size());
         Assertions.assertEquals(16, blackPlayer.getPieces().size());
+        Assertions.assertEquals(20, whitePlayer.getValidMoves().size());
+        Assertions.assertEquals(20, blackPlayer.getValidMoves().size());
     }
 
     @Test
