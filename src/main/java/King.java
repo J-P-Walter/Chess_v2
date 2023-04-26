@@ -103,31 +103,252 @@ public class King extends Piece{
             Square currSquare = checkBoard.getBoard()[row][col - left];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (currSquare.getPiece().getName() == 'R' || currSquare.getPiece().getName() == 'Q'
+                    if (    currSquare.getPiece().getName() == 'R'
+                            || currSquare.getPiece().getName() == 'Q'
                             || currSquare.getPiece().getName() == 'K'){
                         return true;
-                    } else {
-                        break;
                     }
-                } else {
-                    break;
+                    else { break; }
                 }
+                else { break; }
             }
             left++;
         }
+
         //Right
+        int right = 1;
+        while (col+right < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row][col + right];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'R'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            right++;
+        }
 
         //Up
+        int up = 1;
+        while (row-up >= 0){
+            Square currSquare = checkBoard.getBoard()[row - up][col];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'R'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            up++;
+        }
 
         //Down
+        int down = 1;
+        while (row+down < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row + down][col];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'R'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            down++;
+        }
 
         //Up-left
+        int idx = 1;
+        while (row-idx >= 0 && col-idx >= 0){
+            Square currSquare = checkBoard.getBoard()[row-idx][col-idx];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'B'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            idx++;
+        }
 
         //Up-right
+        idx = 1;
+        while (row-idx >= 0 && col+idx < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row - idx][col + idx];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'B'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            idx++;
+        }
 
         //Down-left
+        idx = 1;
+        while (row+idx < checkBoard.getBoard().length && col-idx >= 0) {
+            Square currSquare = checkBoard.getBoard()[row + idx][col - idx];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'B'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            idx++;
+        }
 
         //Down-right
+        idx = 1;
+        while (row+idx < checkBoard.getBoard().length && col+idx < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row + idx][col + idx];
+            if (currSquare.isOccupied()){
+                if (currSquare.getPiece().getColor() != color){
+                    if (    currSquare.getPiece().getName() == 'B'
+                            || currSquare.getPiece().getName() == 'Q'
+                            || currSquare.getPiece().getName() == 'K'){
+                        return true;
+                    } else { break; }
+                } else { break; }
+            }
+            idx++;
+        }
+
+        //Knight moves
+        //up-up-left
+        if (row-2 >= 0 && col-1 >= 0) {
+            Square currSquare = checkBoard.getBoard()[row - 2][col - 1];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                        return true;
+                }
+            }
+        }
+
+        //up-up-right
+        if (row-2 >= 0 && col+1 < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row - 2][col + 1];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //down-down-left
+        if (row+2 < checkBoard.getBoard().length && col-1 >= 0){
+            Square currSquare = checkBoard.getBoard()[row + 2][col - 1];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //down-down-right
+        if (row+2 < checkBoard.getBoard().length && col+1 < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row + 2][col + 1];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //up-left-left
+        if (row-1 >= 0 && col-2 >= 0){
+            Square currSquare = checkBoard.getBoard()[row - 1][col - 2];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //up-right-right
+        if (row-1 >= 0 && col+2 < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row - 1][col + 2];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //down-left-left
+        if (row+1 < checkBoard.getBoard().length && col-2 >= 0){
+            Square currSquare = checkBoard.getBoard()[row + 1][col - 2];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //down-right-right
+        if (row+1 < checkBoard.getBoard().length && col+2 < checkBoard.getBoard().length){
+            Square currSquare = checkBoard.getBoard()[row + 1][col + 2];
+            if (currSquare.isOccupied()) {
+                if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
+                    return true;
+                }
+            }
+        }
+
+        //Pawn moves
+        if (color == 0){
+            //Up-left
+            if (row-1 >= 0 && col-1 >= 0) {
+                Square currSquare = checkBoard.getBoard()[row - 1][col - 1];
+                if (currSquare.isOccupied()) {
+                    if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
+                        return true;
+                    }
+                }
+            }
+            //Up-right
+            if (row-1 >= 0 && col+1 < checkBoard.getBoard().length){
+                Square currSquare = checkBoard.getBoard()[row - 1][col + 1];
+                if (currSquare.isOccupied()) {
+                    if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
+                        return true;
+                    }
+                }
+            }
+        }
+        if (color == 1){
+            //Down-left
+            if (row+1 < checkBoard.getBoard().length && col-1 >= 0) {
+                Square currSquare = checkBoard.getBoard()[row + 1][col - 1];
+                if (currSquare.isOccupied()) {
+                    if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
+                        return true;
+                    }
+                }
+            }
+            //Down-right
+            if (row+1 < checkBoard.getBoard().length && col+1 < checkBoard.getBoard().length){
+                Square currSquare = checkBoard.getBoard()[row + 1][col + 1];
+                if (currSquare.isOccupied()) {
+                    if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 

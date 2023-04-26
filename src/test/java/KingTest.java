@@ -104,9 +104,8 @@ class KingTest {
         Assertions.assertEquals(8, king1.getMoves().size());
     }
 
-
     @Test
-    @DisplayName("Testing king check")
+    @DisplayName("Testing king check left")
     void king_check_left(){
         Player whitePlayer = new Player(0);
         Player blackPlayer = new Player(1);
@@ -124,7 +123,7 @@ class KingTest {
     }
 
     @Test
-    @DisplayName("Testing check is blocked by own piece")
+    @DisplayName("Testing check left is blocked by own piece")
     void king_check_left_blocked(){
         Player whitePlayer = new Player(0);
         Player blackPlayer = new Player(1);
@@ -144,4 +143,661 @@ class KingTest {
         Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
     }
 
+    @Test
+    @DisplayName("Testing check left where opponent piece can't threaten")
+    void king_check_left_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(4, 1, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing king check right")
+    void king_check_right(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(3,3, 0);
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(3, 6, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check right is blocked by own piece")
+    void king_check_right_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(3,3, 0);
+        Rook whiteRook = new Rook(3, 5, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whiteRook);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(3, 6, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check right where opponent piece can't threaten")
+    void king_check_right_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(3,3, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(3, 6, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing king check up")
+    void king_check_up(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(1, 4, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up is blocked by own piece")
+    void king_check_up_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+        Rook whiteRook = new Rook(3, 4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whiteRook);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(1, 4, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up where opponent piece can't threaten")
+    void king_check_up_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(1, 4, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing king check down")
+    void king_check_down(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(3,3, 0);
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(6, 3, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down is blocked by own piece")
+    void king_check_down_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(3,3, 0);
+        Rook whiteRook = new Rook(4, 3, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whiteRook);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Rook blackRook = new Rook(6, 3, 1);
+        blackPlayer.addPiece(blackRook);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down where opponent piece can't threaten")
+    void king_check_down_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(3,3, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(6, 3, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up left")
+    void king_check_up_left(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(6,6, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(2, 2, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up left is blocked by own piece")
+    void king_check_up_left_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(6,6, 0);
+        Pawn whitePawn = new Pawn(4, 4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whitePawn);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(2, 2, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up left where opponent piece can't threaten")
+    void king_check_up_left_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(6,6, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Pawn blackPawn = new Pawn(2, 2, 1);
+        blackPlayer.addPiece(blackPawn);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up right")
+    void king_check_up_right(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(6,1, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(2, 5, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up right is blocked by own piece")
+    void king_check_up_right_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(6,1, 0);
+        Pawn whitePawn = new Pawn(4, 3, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whitePawn);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(2, 5, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check up right where opponent piece can't threaten")
+    void king_check_up_right_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(6,1, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Pawn blackPawn = new Pawn(2, 5, 1);
+        blackPlayer.addPiece(blackPawn);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down left")
+    void king_check_down_left(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(2,5, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(6, 1, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down left is blocked by own piece")
+    void king_check_down_left_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(2,5, 0);
+        Pawn whitePawn = new Pawn(4, 3, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whitePawn);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(6, 1, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down left where opponent piece can't threaten")
+    void king_check_down_left_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(2,5, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Pawn blackPawn = new Pawn(6, 1, 1);
+        blackPlayer.addPiece(blackPawn);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down right")
+    void king_check_down_right(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(1,1, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(6, 6, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down right is blocked by own piece")
+    void king_check_down_right_blocked(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(1,1, 0);
+        Pawn whitePawn = new Pawn(4, 4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whitePawn);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Bishop blackBishop = new Bishop(6, 6, 1);
+        blackPlayer.addPiece(blackBishop);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing check down right where opponent piece can't threaten")
+    void king_check_down_right_wrong_piece(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(1,1, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Pawn blackPawn = new Pawn(6, 6, 1);
+        blackPlayer.addPiece(blackPawn);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    //KNIGHT MOVES
+    @Test
+    @DisplayName("Testing up up left knight move")
+    void king_check_up_up_left_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(2, 3, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing up up right knight move")
+    void king_check_up_up_right_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(2, 5, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing down down left knight move")
+    void king_check_down_down_left_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(6, 3, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing down down right knight move")
+    void king_check_down_down_right_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(6, 5, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing up left left knight move")
+    void king_check_up_left_left_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(3, 2, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing up right right knight move")
+    void king_check_up_right_right_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(3, 6, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing down left left knight move")
+    void king_check_down_left_left_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(5, 2, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing down right right knight move")
+    void king_check_down_right_right_knight(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Knight blackKnight = new Knight(5, 6, 1);
+        blackPlayer.addPiece(blackKnight);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing valid black pawn check")
+    void king_check_from_black_pawn(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Pawn blackPawn = new Pawn(3, 3, 1);
+        blackPlayer.addPiece(blackPawn);
+        blackPlayer.placePieces();
+
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing non-pawn check")
+    void king_non_check_from_black_pawn(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(4,4, 0);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.placePieces();
+        whitePlayer.setKing(whiteKing);
+
+        Pawn blackPawn = new Pawn(4, 3, 1);
+        blackPlayer.addPiece(blackPawn);
+        blackPlayer.placePieces();
+
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing valid white pawn check")
+    void king_check_from_white_pawn(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King blackKing = new King(4,4, 1);
+
+        blackPlayer.addPiece(blackKing);
+        blackPlayer.placePieces();
+        blackPlayer.setKing(blackKing);
+
+        Pawn whitePawn = new Pawn(5, 3, 0);
+        whitePlayer.addPiece(whitePawn);
+        whitePlayer.placePieces();
+
+        Assertions.assertTrue(blackPlayer.getKing().isChecked(board, blackPlayer.getColor()));
+    }
+
+    @Test
+    @DisplayName("Testing non-pawn check")
+    void king_non_check_from_white_pawn(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King blackKing = new King(4,4, 1);
+
+        blackPlayer.addPiece(blackKing);
+        blackPlayer.placePieces();
+        blackPlayer.setKing(blackKing);
+
+        Pawn whitePawn = new Pawn(4, 5, 0);
+        whitePlayer.addPiece(whitePawn);
+        whitePlayer.placePieces();
+
+        Assertions.assertFalse(blackPlayer.getKing().isChecked(board, blackPlayer.getColor()));
+    }
 }
