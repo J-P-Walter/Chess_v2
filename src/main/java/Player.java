@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Player {
@@ -6,13 +5,24 @@ public class Player {
 
     private ArrayList<Piece> pieces = new ArrayList<>();
     private ArrayList<int[]> validMoves = new ArrayList<>();
+    King king;
 
     public ArrayList<int[]> getValidMoves(Square[][] board){
-
+        validMoves = new ArrayList<>();
+        for (Piece p : pieces){
+            if (p.getMoves(board) == null){
+                continue;
+            }
+            for (int[] move : p.getMoves(board)){
+                testMove(move, board);
+                if (!getKing().isChecked(board, color)){
+                    validMoves.add(move);
+                }
+                undoTestMove(move, board);
+            }
+        }
         return validMoves;
     }
-
-    King king;
 
     public Player(int color){
         this.color = color;
@@ -27,7 +37,7 @@ public class Player {
 
     public void placePieces(Square[][] board){
         for (Piece piece : pieces){
-            board[piece.getRow()][piece.getCol()].putPiece(piece);
+            board[piece.getRow()][piece.getCol()].setPiece(piece);
         }
     }
     public King getKing(){
@@ -41,15 +51,44 @@ public class Player {
         return color;
     }
 
+    public void testMove(int[] move, Square[][] board){
+        int oldRow = move[0], oldCol = move[1], newRow = move[2], newCol = move[3];
+
+        Square startSquare = board[oldRow][oldCol];
+        Square endSquare = board[newRow][newCol];
+
+        Piece movingPiece = startSquare.getPiece();
+
+        startSquare.setPiece(null);
+        endSquare.setPrevPiece();
+        endSquare.setPiece(movingPiece);
+    }
+
+    public void undoTestMove(int[] move, Square[][] board){
+        int oldRow = move[2], oldCol = move[3], newRow = move[0], newCol = move[1];
+
+        Square startSquare = board[oldRow][oldCol];
+        Square endSquare = board[newRow][newCol];
+
+        Piece movingPiece = startSquare.getPiece();
+
+        startSquare.setPiece(startSquare.getPrevPiece());
+        endSquare.setPiece(movingPiece);
+    }
 
     public void movePiece(int[] move, Square[][] board){
         int oldRow = move[0], oldCol = move[1], newRow = move[2], newCol = move[3];
-        Piece movingPiece = board[oldRow][oldCol].getPiece();
-        board[newRow][newCol].putPiece(movingPiece);
-        board[oldRow][oldCol].putPiece(null);
-        movingPiece.setRow(newRow);
-        movingPiece.setCol(newCol);
+
+        Square startSquare = board[oldRow][oldCol];
+        Square endSquare = board[newRow][newCol];
+
+        Piece movingPiece = startSquare.getPiece();
+
+        startSquare.setPiece(null);
+        endSquare.getPiece().setInPlay(false);
+        endSquare.setPiece(movingPiece);
     }
+
 }
 
 

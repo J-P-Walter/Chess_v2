@@ -18,7 +18,7 @@ class KingTest {
     @DisplayName("Center of board")
     void king_center(){
         King king = new King(4, 4, 0);
-        board.getBoard()[4][4].putPiece(king);
+        board.getBoard()[4][4].setPiece(king);
 
         Assertions.assertEquals(8, king.getMoves(board.getBoard()).size());
         Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(0), new int[]{4, 4, 4, 3});
@@ -40,10 +40,10 @@ class KingTest {
         King king3 = new King(7, 4, 0);
         King king4 = new King(4, 7, 0);
 
-        board.getBoard()[king1.getRow()][king1.getCol()].putPiece(king1);
-        board.getBoard()[king2.getRow()][king2.getCol()].putPiece(king2);
-        board.getBoard()[king3.getRow()][king3.getCol()].putPiece(king3);
-        board.getBoard()[king4.getRow()][king4.getCol()].putPiece(king4);
+        board.getBoard()[king1.getRow()][king1.getCol()].setPiece(king1);
+        board.getBoard()[king2.getRow()][king2.getCol()].setPiece(king2);
+        board.getBoard()[king3.getRow()][king3.getCol()].setPiece(king3);
+        board.getBoard()[king4.getRow()][king4.getCol()].setPiece(king4);
 
         Assertions.assertEquals(5, king1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(5, king2.getMoves(board.getBoard()).size());
@@ -59,10 +59,10 @@ class KingTest {
         King king3 = new King(7, 0, 0);
         King king4 = new King(7, 7, 0);
 
-        board.getBoard()[king1.getRow()][king1.getCol()].putPiece(king1);
-        board.getBoard()[king2.getRow()][king2.getCol()].putPiece(king2);
-        board.getBoard()[king3.getRow()][king3.getCol()].putPiece(king3);
-        board.getBoard()[king4.getRow()][king4.getCol()].putPiece(king4);
+        board.getBoard()[king1.getRow()][king1.getCol()].setPiece(king1);
+        board.getBoard()[king2.getRow()][king2.getCol()].setPiece(king2);
+        board.getBoard()[king3.getRow()][king3.getCol()].setPiece(king3);
+        board.getBoard()[king4.getRow()][king4.getCol()].setPiece(king4);
 
         Assertions.assertEquals(3, king1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(3, king2.getMoves(board.getBoard()).size());
@@ -78,10 +78,10 @@ class KingTest {
         King king3 = new King(3, 3, 0);
         King king4 = new King(3, 4, 0);
 
-        board.getBoard()[king1.getRow()][king1.getCol()].putPiece(king1);
-        board.getBoard()[king2.getRow()][king2.getCol()].putPiece(king2);
-        board.getBoard()[king3.getRow()][king3.getCol()].putPiece(king3);
-        board.getBoard()[king4.getRow()][king4.getCol()].putPiece(king4);
+        board.getBoard()[king1.getRow()][king1.getCol()].setPiece(king1);
+        board.getBoard()[king2.getRow()][king2.getCol()].setPiece(king2);
+        board.getBoard()[king3.getRow()][king3.getCol()].setPiece(king3);
+        board.getBoard()[king4.getRow()][king4.getCol()].setPiece(king4);
 
         Assertions.assertEquals(5, king1.getMoves(board.getBoard()).size());
     }
@@ -93,9 +93,9 @@ class KingTest {
         Rook rook1 = new Rook(4,3, 1);
         Rook rook2 = new Rook(3, 4, 1);
 
-        board.getBoard()[king1.getRow()][king1.getCol()].putPiece(king1);
-        board.getBoard()[rook1.getRow()][rook1.getCol()].putPiece(rook1);
-        board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
+        board.getBoard()[king1.getRow()][king1.getCol()].setPiece(king1);
+        board.getBoard()[rook1.getRow()][rook1.getCol()].setPiece(rook1);
+        board.getBoard()[rook2.getRow()][rook2.getCol()].setPiece(rook2);
 
         Assertions.assertEquals(8, king1.getMoves(board.getBoard()).size());
     }

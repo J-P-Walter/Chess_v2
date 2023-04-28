@@ -18,7 +18,7 @@ class QueenTest {
     @DisplayName("Center of board")
     void queen_center(){
         Queen queen = new Queen(4, 4, 0);
-        board.getBoard()[4][4].putPiece(queen);
+        board.getBoard()[4][4].setPiece(queen);
 
         Assertions.assertEquals(27, queen.getMoves(board.getBoard()).size());
     }
@@ -31,10 +31,10 @@ class QueenTest {
         Queen queen3 = new Queen(7, 4, 0);
         Queen queen4 = new Queen(3, 7, 0);
 
-        board.getBoard()[queen1.getRow()][queen1.getCol()].putPiece(queen1);
-        board.getBoard()[queen2.getRow()][queen2.getCol()].putPiece(queen2);
-        board.getBoard()[queen3.getRow()][queen3.getCol()].putPiece(queen3);
-        board.getBoard()[queen4.getRow()][queen4.getCol()].putPiece(queen4);
+        board.getBoard()[queen1.getRow()][queen1.getCol()].setPiece(queen1);
+        board.getBoard()[queen2.getRow()][queen2.getCol()].setPiece(queen2);
+        board.getBoard()[queen3.getRow()][queen3.getCol()].setPiece(queen3);
+        board.getBoard()[queen4.getRow()][queen4.getCol()].setPiece(queen4);
 
         Assertions.assertEquals(21, queen1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(21, queen2.getMoves(board.getBoard()).size());
@@ -50,10 +50,10 @@ class QueenTest {
         Queen queen3 = new Queen(7, 0, 0);
         Queen queen4 = new Queen(7, 7, 0);
 
-        board.getBoard()[queen1.getRow()][queen1.getCol()].putPiece(queen1);
-        board.getBoard()[queen2.getRow()][queen2.getCol()].putPiece(queen2);
-        board.getBoard()[queen3.getRow()][queen3.getCol()].putPiece(queen3);
-        board.getBoard()[queen4.getRow()][queen4.getCol()].putPiece(queen4);
+        board.getBoard()[queen1.getRow()][queen1.getCol()].setPiece(queen1);
+        board.getBoard()[queen2.getRow()][queen2.getCol()].setPiece(queen2);
+        board.getBoard()[queen3.getRow()][queen3.getCol()].setPiece(queen3);
+        board.getBoard()[queen4.getRow()][queen4.getCol()].setPiece(queen4);
 
         Assertions.assertEquals(18, queen1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(18, queen2.getMoves(board.getBoard()).size());
@@ -72,12 +72,12 @@ class QueenTest {
         Queen queen6 = new Queen(7, 7, 0);
 
 
-        board.getBoard()[queen1.getRow()][queen1.getCol()].putPiece(queen1);
-        board.getBoard()[queen2.getRow()][queen2.getCol()].putPiece(queen2);
-        board.getBoard()[queen3.getRow()][queen3.getCol()].putPiece(queen3);
-        board.getBoard()[queen4.getRow()][queen4.getCol()].putPiece(queen4);
-        board.getBoard()[queen5.getRow()][queen5.getCol()].putPiece(queen5);
-        board.getBoard()[queen6.getRow()][queen6.getCol()].putPiece(queen6);
+        board.getBoard()[queen1.getRow()][queen1.getCol()].setPiece(queen1);
+        board.getBoard()[queen2.getRow()][queen2.getCol()].setPiece(queen2);
+        board.getBoard()[queen3.getRow()][queen3.getCol()].setPiece(queen3);
+        board.getBoard()[queen4.getRow()][queen4.getCol()].setPiece(queen4);
+        board.getBoard()[queen5.getRow()][queen5.getCol()].setPiece(queen5);
+        board.getBoard()[queen6.getRow()][queen6.getCol()].setPiece(queen6);
 
         Assertions.assertEquals(16, queen1.getMoves(board.getBoard()).size());
     }
@@ -93,12 +93,12 @@ class QueenTest {
         Queen queen6 = new Queen(7, 7, 1);
 
 
-        board.getBoard()[queen1.getRow()][queen1.getCol()].putPiece(queen1);
-        board.getBoard()[queen2.getRow()][queen2.getCol()].putPiece(queen2);
-        board.getBoard()[queen3.getRow()][queen3.getCol()].putPiece(queen3);
-        board.getBoard()[queen4.getRow()][queen4.getCol()].putPiece(queen4);
-        board.getBoard()[queen5.getRow()][queen5.getCol()].putPiece(queen5);
-        board.getBoard()[queen6.getRow()][queen6.getCol()].putPiece(queen6);
+        board.getBoard()[queen1.getRow()][queen1.getCol()].setPiece(queen1);
+        board.getBoard()[queen2.getRow()][queen2.getCol()].setPiece(queen2);
+        board.getBoard()[queen3.getRow()][queen3.getCol()].setPiece(queen3);
+        board.getBoard()[queen4.getRow()][queen4.getCol()].setPiece(queen4);
+        board.getBoard()[queen5.getRow()][queen5.getCol()].setPiece(queen5);
+        board.getBoard()[queen6.getRow()][queen6.getCol()].setPiece(queen6);
 
         Assertions.assertEquals(21, queen1.getMoves(board.getBoard()).size());
     }

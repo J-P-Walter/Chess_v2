@@ -18,7 +18,7 @@ class RookTest {
     @DisplayName("Center of board")
     void rook_center(){
         Rook rook = new Rook(4, 4, 0);
-        board.getBoard()[4][4].putPiece(rook);
+        board.getBoard()[4][4].setPiece(rook);
 
         Assertions.assertEquals(14, rook.getMoves(board.getBoard()).size());
         Assertions.assertArrayEquals(rook.getMoves(board.getBoard()).get(3), new int[]{4, 4, 4, 0});
@@ -35,10 +35,10 @@ class RookTest {
         Rook rook3 = new Rook(7, 4, 0);
         Rook rook4 = new Rook(4, 7, 0);
 
-        board.getBoard()[rook1.getRow()][rook1.getCol()].putPiece(rook1);
-        board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
-        board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
-        board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
+        board.getBoard()[rook1.getRow()][rook1.getCol()].setPiece(rook1);
+        board.getBoard()[rook2.getRow()][rook2.getCol()].setPiece(rook2);
+        board.getBoard()[rook3.getRow()][rook3.getCol()].setPiece(rook3);
+        board.getBoard()[rook4.getRow()][rook4.getCol()].setPiece(rook4);
 
         Assertions.assertEquals(14, rook1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(14, rook2.getMoves(board.getBoard()).size());
@@ -54,10 +54,10 @@ class RookTest {
         Rook rook3 = new Rook(7, 0, 0);
         Rook rook4 = new Rook(7, 7, 0);
 
-        board.getBoard()[rook1.getRow()][rook1.getCol()].putPiece(rook1);
-        board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
-        board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
-        board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
+        board.getBoard()[rook1.getRow()][rook1.getCol()].setPiece(rook1);
+        board.getBoard()[rook2.getRow()][rook2.getCol()].setPiece(rook2);
+        board.getBoard()[rook3.getRow()][rook3.getCol()].setPiece(rook3);
+        board.getBoard()[rook4.getRow()][rook4.getCol()].setPiece(rook4);
 
         Assertions.assertEquals(12, rook1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(12, rook2.getMoves(board.getBoard()).size());
@@ -73,10 +73,10 @@ class RookTest {
         Rook rook3 = new Rook(2, 4, 0);
         Rook rook4 = new Rook(4, 7, 0);
 
-        board.getBoard()[rook1.getRow()][rook1.getCol()].putPiece(rook1);
-        board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
-        board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
-        board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
+        board.getBoard()[rook1.getRow()][rook1.getCol()].setPiece(rook1);
+        board.getBoard()[rook2.getRow()][rook2.getCol()].setPiece(rook2);
+        board.getBoard()[rook3.getRow()][rook3.getCol()].setPiece(rook3);
+        board.getBoard()[rook4.getRow()][rook4.getCol()].setPiece(rook4);
 
         Assertions.assertEquals(6, rook1.getMoves(board.getBoard()).size());
     }
@@ -89,10 +89,10 @@ class RookTest {
         Rook rook3 = new Rook(2, 4, 1);
         Rook rook4 = new Rook(4, 7, 1);
 
-        board.getBoard()[rook1.getRow()][rook1.getCol()].putPiece(rook1);
-        board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
-        board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
-        board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
+        board.getBoard()[rook1.getRow()][rook1.getCol()].setPiece(rook1);
+        board.getBoard()[rook2.getRow()][rook2.getCol()].setPiece(rook2);
+        board.getBoard()[rook3.getRow()][rook3.getCol()].setPiece(rook3);
+        board.getBoard()[rook4.getRow()][rook4.getCol()].setPiece(rook4);
 
         Assertions.assertEquals(9, rook1.getMoves(board.getBoard()).size());
     }

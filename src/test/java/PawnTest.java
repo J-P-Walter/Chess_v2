@@ -23,8 +23,8 @@ class PawnTest {
         whitePawn.setMoved(true);
         blackPawn.setMoved(true);
 
-        board.getBoard()[whitePawn.getRow()][whitePawn.getCol()].putPiece(whitePawn);
-        board.getBoard()[blackPawn.getRow()][blackPawn.getCol()].putPiece(blackPawn);
+        board.getBoard()[whitePawn.getRow()][whitePawn.getCol()].setPiece(whitePawn);
+        board.getBoard()[blackPawn.getRow()][blackPawn.getCol()].setPiece(blackPawn);
 
         Assertions.assertEquals(1, whitePawn.getMoves(board.getBoard()).size());
         Assertions.assertArrayEquals(whitePawn.getMoves(board.getBoard()).get(0), new int[]{4, 5, 3, 5});
@@ -39,8 +39,8 @@ class PawnTest {
         Pawn whitePawn = new Pawn(6, 5, 0);
         Pawn blackPawn = new Pawn(1, 3, 1);
 
-        board.getBoard()[whitePawn.getRow()][whitePawn.getCol()].putPiece(whitePawn);
-        board.getBoard()[blackPawn.getRow()][blackPawn.getCol()].putPiece(blackPawn);
+        board.getBoard()[whitePawn.getRow()][whitePawn.getCol()].setPiece(whitePawn);
+        board.getBoard()[blackPawn.getRow()][blackPawn.getCol()].setPiece(blackPawn);
 
         Assertions.assertEquals(2, whitePawn.getMoves(board.getBoard()).size());
         Assertions.assertArrayEquals(whitePawn.getMoves(board.getBoard()).get(0), new int[]{6, 5, 4, 5});
@@ -61,8 +61,8 @@ class PawnTest {
         whitePawn.setMoved(true);
         blackPawn.setMoved(true);
 
-        board.getBoard()[whitePawn.getRow()][whitePawn.getCol()].putPiece(whitePawn);
-        board.getBoard()[blackPawn.getRow()][blackPawn.getCol()].putPiece(blackPawn);
+        board.getBoard()[whitePawn.getRow()][whitePawn.getCol()].setPiece(whitePawn);
+        board.getBoard()[blackPawn.getRow()][blackPawn.getCol()].setPiece(blackPawn);
 
         Assertions.assertEquals(2, whitePawn.getMoves(board.getBoard()).size());
         Assertions.assertArrayEquals(whitePawn.getMoves(board.getBoard()).get(0), new int[]{4, 5, 3, 5});

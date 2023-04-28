@@ -17,7 +17,7 @@ class BishopTest {
     @DisplayName("Center of board")
     void bishop_center(){
         Bishop bishop = new Bishop(4, 4, 0);
-        board.getBoard()[4][4].putPiece(bishop);
+        board.getBoard()[4][4].setPiece(bishop);
 
         Assertions.assertEquals(13, bishop.getMoves(board.getBoard()).size());
         Assertions.assertArrayEquals(bishop.getMoves(board.getBoard()).get(3), new int[]{4, 4, 0, 0});
@@ -34,10 +34,10 @@ class BishopTest {
         Bishop bishop3 = new Bishop(7, 4, 0);
         Bishop bishop4 = new Bishop(3, 7, 0);
 
-        board.getBoard()[bishop1.getRow()][bishop1.getCol()].putPiece(bishop1);
-        board.getBoard()[bishop2.getRow()][bishop2.getCol()].putPiece(bishop2);
-        board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
-        board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
+        board.getBoard()[bishop1.getRow()][bishop1.getCol()].setPiece(bishop1);
+        board.getBoard()[bishop2.getRow()][bishop2.getCol()].setPiece(bishop2);
+        board.getBoard()[bishop3.getRow()][bishop3.getCol()].setPiece(bishop3);
+        board.getBoard()[bishop4.getRow()][bishop4.getCol()].setPiece(bishop4);
 
         Assertions.assertEquals(7, bishop1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(7, bishop2.getMoves(board.getBoard()).size());
@@ -53,10 +53,10 @@ class BishopTest {
         Bishop bishop3 = new Bishop(7, 0, 0);
         Bishop bishop4 = new Bishop(7, 7, 0);
 
-        board.getBoard()[bishop1.getRow()][bishop1.getCol()].putPiece(bishop1);
-        board.getBoard()[bishop2.getRow()][bishop2.getCol()].putPiece(bishop2);
-        board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
-        board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
+        board.getBoard()[bishop1.getRow()][bishop1.getCol()].setPiece(bishop1);
+        board.getBoard()[bishop2.getRow()][bishop2.getCol()].setPiece(bishop2);
+        board.getBoard()[bishop3.getRow()][bishop3.getCol()].setPiece(bishop3);
+        board.getBoard()[bishop4.getRow()][bishop4.getCol()].setPiece(bishop4);
 
         Assertions.assertEquals(6, bishop1.getMoves(board.getBoard()).size());
         Assertions.assertEquals(6, bishop2.getMoves(board.getBoard()).size());
@@ -72,10 +72,10 @@ class BishopTest {
         Bishop bishop3 = new Bishop(2, 6, 0);
         Bishop bishop4 = new Bishop(7, 7, 0);
 
-        board.getBoard()[bishop1.getRow()][bishop1.getCol()].putPiece(bishop1);
-        board.getBoard()[bishop2.getRow()][bishop2.getCol()].putPiece(bishop2);
-        board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
-        board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
+        board.getBoard()[bishop1.getRow()][bishop1.getCol()].setPiece(bishop1);
+        board.getBoard()[bishop2.getRow()][bishop2.getCol()].setPiece(bishop2);
+        board.getBoard()[bishop3.getRow()][bishop3.getCol()].setPiece(bishop3);
+        board.getBoard()[bishop4.getRow()][bishop4.getCol()].setPiece(bishop4);
 
         Assertions.assertEquals(6, bishop1.getMoves(board.getBoard()).size());
     }
@@ -88,10 +88,10 @@ class BishopTest {
         Bishop bishop3 = new Bishop(2, 6, 1);
         Bishop bishop4 = new Bishop(7, 7, 1);
 
-        board.getBoard()[bishop1.getRow()][bishop1.getCol()].putPiece(bishop1);
-        board.getBoard()[bishop2.getRow()][bishop2.getCol()].putPiece(bishop2);
-        board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
-        board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
+        board.getBoard()[bishop1.getRow()][bishop1.getCol()].setPiece(bishop1);
+        board.getBoard()[bishop2.getRow()][bishop2.getCol()].setPiece(bishop2);
+        board.getBoard()[bishop3.getRow()][bishop3.getCol()].setPiece(bishop3);
+        board.getBoard()[bishop4.getRow()][bishop4.getCol()].setPiece(bishop4);
 
         Assertions.assertEquals(9, bishop1.getMoves(board.getBoard()).size());
     }
