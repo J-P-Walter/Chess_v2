@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-
 class RookTest {
-    private static Board board = Board.getInstance();
+    Board board = new Board(null);
 
     @BeforeEach
     void setUp(){
@@ -22,11 +20,11 @@ class RookTest {
         Rook rook = new Rook(4, 4, 0);
         board.getBoard()[4][4].putPiece(rook);
 
-        Assertions.assertEquals(14, rook.getMoves().size());
-        Assertions.assertTrue(Arrays.equals(rook.getMoves().get(3), new int[]{4, 4, 4, 0}));
-        Assertions.assertTrue(Arrays.equals(rook.getMoves().get(6), new int[]{4, 4, 4, 7}));
-        Assertions.assertTrue(Arrays.equals(rook.getMoves().get(10), new int[]{4, 4, 0, 4}));
-        Assertions.assertTrue(Arrays.equals(rook.getMoves().get(13), new int[]{4, 4, 7, 4}));
+        Assertions.assertEquals(14, rook.getMoves(board.getBoard()).size());
+        Assertions.assertArrayEquals(rook.getMoves(board.getBoard()).get(3), new int[]{4, 4, 4, 0});
+        Assertions.assertArrayEquals(rook.getMoves(board.getBoard()).get(6), new int[]{4, 4, 4, 7});
+        Assertions.assertArrayEquals(rook.getMoves(board.getBoard()).get(10), new int[]{4, 4, 0, 4});
+        Assertions.assertArrayEquals(rook.getMoves(board.getBoard()).get(13), new int[]{4, 4, 7, 4});
     }
 
     @Test
@@ -42,10 +40,10 @@ class RookTest {
         board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
         board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
 
-        Assertions.assertEquals(14, rook1.getMoves().size());
-        Assertions.assertEquals(14, rook2.getMoves().size());
-        Assertions.assertEquals(14, rook3.getMoves().size());
-        Assertions.assertEquals(14, rook4.getMoves().size());
+        Assertions.assertEquals(14, rook1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(14, rook2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(14, rook3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(14, rook4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -61,10 +59,10 @@ class RookTest {
         board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
         board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
 
-        Assertions.assertEquals(12, rook1.getMoves().size());
-        Assertions.assertEquals(12, rook2.getMoves().size());
-        Assertions.assertEquals(12, rook3.getMoves().size());
-        Assertions.assertEquals(12, rook4.getMoves().size());
+        Assertions.assertEquals(12, rook1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(12, rook2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(12, rook3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(12, rook4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -80,7 +78,7 @@ class RookTest {
         board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
         board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
 
-        Assertions.assertEquals(6, rook1.getMoves().size());
+        Assertions.assertEquals(6, rook1.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -96,6 +94,6 @@ class RookTest {
         board.getBoard()[rook3.getRow()][rook3.getCol()].putPiece(rook3);
         board.getBoard()[rook4.getRow()][rook4.getCol()].putPiece(rook4);
 
-        Assertions.assertEquals(9, rook1.getMoves().size());
+        Assertions.assertEquals(9, rook1.getMoves(board.getBoard()).size());
     }
 }

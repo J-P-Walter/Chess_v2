@@ -4,89 +4,89 @@ import java.util.ArrayList;
 //TODO: implement isChecked method
 
 public class King extends Piece{
-    private char name = 'K';
     public King(int row, int col, int color) { super(row, col, color); }
 
     /*
         Kings can move both orthogonal and diagonal but only once, simply checks each of the eight squares
      */
     @Override
-    public ArrayList<int[]> getMoves(){
-        Board board = Board.getInstance();
-        ArrayList<int[]> validMoves = new ArrayList<>();
+    public ArrayList<int[]> getMoves(Square[][] board){
+        if (!inPlay){ return null; }
+
+        ArrayList<int[]> moves = new ArrayList<>();
 
         //Left
-        if (col-1 >= 0 && !board.getBoard()[row][col-1].isOccupied()){
-            validMoves.add(new int[]{row, col, row, col-1});
+        if (col-1 >= 0 && !board[row][col-1].isOccupied()){
+            moves.add(new int[]{row, col, row, col-1});
         }
-        else if (col-1 >= 0 && board.getBoard()[row][col-1].getPiece().getColor() != color){
-            validMoves.add(new int[]{row, col, row, col-1});
+        else if (col-1 >= 0 && board[row][col-1].getPiece().getColor() != color){
+            moves.add(new int[]{row, col, row, col-1});
         }
 
         //Right
-        if (col+1 < board.getBoard().length && !board.getBoard()[row][col+1].isOccupied()){
-            validMoves.add(new int[]{row, col, row, col+1});
+        if (col+1 < board.length && !board[row][col+1].isOccupied()){
+            moves.add(new int[]{row, col, row, col+1});
         }
-        else if (col+1 < board.getBoard().length && board.getBoard()[row][col+1].getPiece().getColor() != color){
-            validMoves.add(new int[]{row, col, row, col+1});
+        else if (col+1 < board.length && board[row][col+1].getPiece().getColor() != color){
+            moves.add(new int[]{row, col, row, col+1});
         }
 
         //Up
-        if (row-1 >= 0 && !board.getBoard()[row-1][col].isOccupied()){
-            validMoves.add(new int[]{row, col, row-1, col});
+        if (row-1 >= 0 && !board[row-1][col].isOccupied()){
+            moves.add(new int[]{row, col, row-1, col});
         }
-        else if (row-1 >= 0 && board.getBoard()[row-1][col].getPiece().getColor() != color){
-            validMoves.add(new int[]{row, col, row-1, col});
+        else if (row-1 >= 0 && board[row-1][col].getPiece().getColor() != color){
+            moves.add(new int[]{row, col, row-1, col});
         }
 
         //Down
-        if (row+1 < board.getBoard().length && !board.getBoard()[row + 1][col].isOccupied()){
-            validMoves.add(new int[]{row, col, row+1, col});
+        if (row+1 < board.length && !board[row + 1][col].isOccupied()){
+            moves.add(new int[]{row, col, row+1, col});
         }
-        else if (row+1 < board.getBoard().length && board.getBoard()[row+1][col].getPiece().getColor() != color){
-            validMoves.add(new int[]{row, col, row+1, col});
+        else if (row+1 < board.length && board[row+1][col].getPiece().getColor() != color){
+            moves.add(new int[]{row, col, row+1, col});
         }
 
         //Up-left
         if (row-1 >= 0 && col-1 >= 0){
-            if (!board.getBoard()[row - 1][col - 1].isOccupied()){
-                validMoves.add(new int[]{row, col, row-1, col-1});
+            if (!board[row - 1][col - 1].isOccupied()){
+                moves.add(new int[]{row, col, row-1, col-1});
             }
-            else if (board.getBoard()[row-1][col-1].getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row-1, col-1});
+            else if (board[row-1][col-1].getPiece().getColor() != color){
+                moves.add(new int[]{row, col, row-1, col-1});
             }
         }
 
         //Up-right
-        if (row-1 >= 0 && col+1 < board.getBoard().length){
-            if (!board.getBoard()[row - 1][col + 1].isOccupied()){
-                validMoves.add(new int[]{row, col, row-1, col+1});
+        if (row-1 >= 0 && col+1 < board.length){
+            if (!board[row - 1][col + 1].isOccupied()){
+                moves.add(new int[]{row, col, row-1, col+1});
             }
-            else if (board.getBoard()[row-1][col+1].getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row-1, col+1});
+            else if (board[row-1][col+1].getPiece().getColor() != color){
+                moves.add(new int[]{row, col, row-1, col+1});
             }
         }
 
         //Down-left
-        if (row+1 < board.getBoard().length && col-1 >= 0){
-            if (!board.getBoard()[row + 1][col - 1].isOccupied()){
-                validMoves.add(new int[]{row, col, row+1, col-1});
+        if (row+1 < board.length && col-1 >= 0){
+            if (!board[row + 1][col - 1].isOccupied()){
+                moves.add(new int[]{row, col, row+1, col-1});
             }
-            else if (board.getBoard()[row+1][col-1].getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row+1, col-1});
+            else if (board[row+1][col-1].getPiece().getColor() != color){
+                moves.add(new int[]{row, col, row+1, col-1});
             }
         }
 
         //Down-right
-        if (row+1 < board.getBoard().length && col+1 < board.getBoard().length){
-            if (!board.getBoard()[row + 1][col + 1].isOccupied()){
-                validMoves.add(new int[]{row, col, row+1, col+1});
+        if (row+1 < board.length && col+1 < board.length){
+            if (!board[row + 1][col + 1].isOccupied()){
+                moves.add(new int[]{row, col, row+1, col+1});
             }
-            else if (board.getBoard()[row+1][col+1].getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row+1, col+1});
+            else if (board[row+1][col+1].getPiece().getColor() != color){
+                moves.add(new int[]{row, col, row+1, col+1});
             }
         }
-        return validMoves;
+        return moves;
     }
 
     /*
@@ -96,11 +96,11 @@ public class King extends Piece{
     To be used to determine if a player is in check and if moves are allowed
         ex. you cannot put yourself in check
 */
-    public boolean isChecked(Board checkBoard, int color){
+    public boolean isChecked(Square[][] checkBoard, int color){
         //Left
         int left = 1;
         while (col-left >= 0){
-            Square currSquare = checkBoard.getBoard()[row][col - left];
+            Square currSquare = checkBoard[row][col - left];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'R'
@@ -117,8 +117,8 @@ public class King extends Piece{
 
         //Right
         int right = 1;
-        while (col+right < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row][col + right];
+        while (col+right < checkBoard.length){
+            Square currSquare = checkBoard[row][col + right];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'R'
@@ -134,7 +134,7 @@ public class King extends Piece{
         //Up
         int up = 1;
         while (row-up >= 0){
-            Square currSquare = checkBoard.getBoard()[row - up][col];
+            Square currSquare = checkBoard[row - up][col];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'R'
@@ -149,8 +149,8 @@ public class King extends Piece{
 
         //Down
         int down = 1;
-        while (row+down < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row + down][col];
+        while (row+down < checkBoard.length){
+            Square currSquare = checkBoard[row + down][col];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'R'
@@ -166,7 +166,7 @@ public class King extends Piece{
         //Up-left
         int idx = 1;
         while (row-idx >= 0 && col-idx >= 0){
-            Square currSquare = checkBoard.getBoard()[row-idx][col-idx];
+            Square currSquare = checkBoard[row-idx][col-idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'B'
@@ -181,8 +181,8 @@ public class King extends Piece{
 
         //Up-right
         idx = 1;
-        while (row-idx >= 0 && col+idx < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row - idx][col + idx];
+        while (row-idx >= 0 && col+idx < checkBoard.length){
+            Square currSquare = checkBoard[row - idx][col + idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'B'
@@ -197,8 +197,8 @@ public class King extends Piece{
 
         //Down-left
         idx = 1;
-        while (row+idx < checkBoard.getBoard().length && col-idx >= 0) {
-            Square currSquare = checkBoard.getBoard()[row + idx][col - idx];
+        while (row+idx < checkBoard.length && col-idx >= 0) {
+            Square currSquare = checkBoard[row + idx][col - idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'B'
@@ -213,8 +213,8 @@ public class King extends Piece{
 
         //Down-right
         idx = 1;
-        while (row+idx < checkBoard.getBoard().length && col+idx < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row + idx][col + idx];
+        while (row+idx < checkBoard.length && col+idx < checkBoard.length){
+            Square currSquare = checkBoard[row + idx][col + idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
                     if (    currSquare.getPiece().getName() == 'B'
@@ -230,7 +230,7 @@ public class King extends Piece{
         //Knight moves
         //up-up-left
         if (row-2 >= 0 && col-1 >= 0) {
-            Square currSquare = checkBoard.getBoard()[row - 2][col - 1];
+            Square currSquare = checkBoard[row - 2][col - 1];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                         return true;
@@ -239,8 +239,8 @@ public class King extends Piece{
         }
 
         //up-up-right
-        if (row-2 >= 0 && col+1 < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row - 2][col + 1];
+        if (row-2 >= 0 && col+1 < checkBoard.length){
+            Square currSquare = checkBoard[row - 2][col + 1];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -249,8 +249,8 @@ public class King extends Piece{
         }
 
         //down-down-left
-        if (row+2 < checkBoard.getBoard().length && col-1 >= 0){
-            Square currSquare = checkBoard.getBoard()[row + 2][col - 1];
+        if (row+2 < checkBoard.length && col-1 >= 0){
+            Square currSquare = checkBoard[row + 2][col - 1];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -259,8 +259,8 @@ public class King extends Piece{
         }
 
         //down-down-right
-        if (row+2 < checkBoard.getBoard().length && col+1 < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row + 2][col + 1];
+        if (row+2 < checkBoard.length && col+1 < checkBoard.length){
+            Square currSquare = checkBoard[row + 2][col + 1];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -270,7 +270,7 @@ public class King extends Piece{
 
         //up-left-left
         if (row-1 >= 0 && col-2 >= 0){
-            Square currSquare = checkBoard.getBoard()[row - 1][col - 2];
+            Square currSquare = checkBoard[row - 1][col - 2];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -279,8 +279,8 @@ public class King extends Piece{
         }
 
         //up-right-right
-        if (row-1 >= 0 && col+2 < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row - 1][col + 2];
+        if (row-1 >= 0 && col+2 < checkBoard.length){
+            Square currSquare = checkBoard[row - 1][col + 2];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -289,8 +289,8 @@ public class King extends Piece{
         }
 
         //down-left-left
-        if (row+1 < checkBoard.getBoard().length && col-2 >= 0){
-            Square currSquare = checkBoard.getBoard()[row + 1][col - 2];
+        if (row+1 < checkBoard.length && col-2 >= 0){
+            Square currSquare = checkBoard[row + 1][col - 2];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -299,8 +299,8 @@ public class King extends Piece{
         }
 
         //down-right-right
-        if (row+1 < checkBoard.getBoard().length && col+2 < checkBoard.getBoard().length){
-            Square currSquare = checkBoard.getBoard()[row + 1][col + 2];
+        if (row+1 < checkBoard.length && col+2 < checkBoard.length){
+            Square currSquare = checkBoard[row + 1][col + 2];
             if (currSquare.isOccupied()) {
                 if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'N') {
                     return true;
@@ -312,7 +312,7 @@ public class King extends Piece{
         if (color == 0){
             //Up-left
             if (row-1 >= 0 && col-1 >= 0) {
-                Square currSquare = checkBoard.getBoard()[row - 1][col - 1];
+                Square currSquare = checkBoard[row - 1][col - 1];
                 if (currSquare.isOccupied()) {
                     if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
                         return true;
@@ -320,8 +320,8 @@ public class King extends Piece{
                 }
             }
             //Up-right
-            if (row-1 >= 0 && col+1 < checkBoard.getBoard().length){
-                Square currSquare = checkBoard.getBoard()[row - 1][col + 1];
+            if (row-1 >= 0 && col+1 < checkBoard.length){
+                Square currSquare = checkBoard[row - 1][col + 1];
                 if (currSquare.isOccupied()) {
                     if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
                         return true;
@@ -331,8 +331,8 @@ public class King extends Piece{
         }
         if (color == 1){
             //Down-left
-            if (row+1 < checkBoard.getBoard().length && col-1 >= 0) {
-                Square currSquare = checkBoard.getBoard()[row + 1][col - 1];
+            if (row+1 < checkBoard.length && col-1 >= 0) {
+                Square currSquare = checkBoard[row + 1][col - 1];
                 if (currSquare.isOccupied()) {
                     if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
                         return true;
@@ -340,8 +340,8 @@ public class King extends Piece{
                 }
             }
             //Down-right
-            if (row+1 < checkBoard.getBoard().length && col+1 < checkBoard.getBoard().length){
-                Square currSquare = checkBoard.getBoard()[row + 1][col + 1];
+            if (row+1 < checkBoard.length && col+1 < checkBoard.length){
+                Square currSquare = checkBoard[row + 1][col + 1];
                 if (currSquare.isOccupied()) {
                     if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
                         return true;
@@ -353,7 +353,7 @@ public class King extends Piece{
     }
 
     public char getName() {
-        return name;
+        return 'K';
     }
 }
 

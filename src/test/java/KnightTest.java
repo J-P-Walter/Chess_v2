@@ -1,11 +1,7 @@
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class KnightTest {
-    private static Board board = Board.getInstance();
+    Board board = new Board(null);
 
     @BeforeEach
     void setUp(){
@@ -24,9 +20,9 @@ class KnightTest {
         Knight knight = new Knight(4, 4, 0);
         board.getBoard()[4][4].putPiece(knight);
 
-        Assertions.assertEquals(8, knight.getMoves().size());
-        Assertions.assertTrue(Arrays.equals(knight.getMoves().get(0), new int[]{4, 4, 2, 3}));
-        Assertions.assertTrue(Arrays.equals(knight.getMoves().get(3), new int[]{4, 4, 6, 5}));
+        Assertions.assertEquals(8, knight.getMoves(board.getBoard()).size());
+        Assertions.assertArrayEquals(knight.getMoves(board.getBoard()).get(0), new int[]{4, 4, 2, 3});
+        Assertions.assertArrayEquals(knight.getMoves(board.getBoard()).get(3), new int[]{4, 4, 6, 5});
     }
 
     @Test
@@ -42,10 +38,10 @@ class KnightTest {
         board.getBoard()[knight3.getRow()][knight3.getCol()].putPiece(knight3);
         board.getBoard()[knight4.getRow()][knight4.getCol()].putPiece(knight4);
 
-        Assertions.assertEquals(4, knight1.getMoves().size());
-        Assertions.assertEquals(4, knight2.getMoves().size());
-        Assertions.assertEquals(4, knight3.getMoves().size());
-        Assertions.assertEquals(4, knight4.getMoves().size());
+        Assertions.assertEquals(4, knight1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(4, knight2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(4, knight3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(4, knight4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -61,10 +57,10 @@ class KnightTest {
         board.getBoard()[knight3.getRow()][knight3.getCol()].putPiece(knight3);
         board.getBoard()[knight4.getRow()][knight4.getCol()].putPiece(knight4);
 
-        Assertions.assertEquals(2, knight1.getMoves().size());
-        Assertions.assertEquals(2, knight2.getMoves().size());
-        Assertions.assertEquals(2, knight3.getMoves().size());
-        Assertions.assertEquals(2, knight4.getMoves().size());
+        Assertions.assertEquals(2, knight1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(2, knight2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(2, knight3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(2, knight4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -80,7 +76,7 @@ class KnightTest {
         board.getBoard()[knight3.getRow()][knight3.getCol()].putPiece(knight3);
         board.getBoard()[knight4.getRow()][knight4.getCol()].putPiece(knight4);
 
-        Assertions.assertEquals(5, knight1.getMoves().size());
+        Assertions.assertEquals(5, knight1.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -96,6 +92,6 @@ class KnightTest {
         board.getBoard()[knight3.getRow()][knight3.getCol()].putPiece(knight3);
         board.getBoard()[knight4.getRow()][knight4.getCol()].putPiece(knight4);
 
-        Assertions.assertEquals(8, knight1.getMoves().size());
+        Assertions.assertEquals(8, knight1.getMoves(board.getBoard()).size());
     }
 }

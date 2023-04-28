@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Pawn extends Piece {
     private boolean moved = false;
-    private char name = 'P';
 
     public Pawn(int row, int col, int color) {
         super(row, col, color);
@@ -19,9 +18,9 @@ public class Pawn extends Piece {
         forward. Pawn also contains a variable 'moved', which allows it to move forward twice if false and unimpeded
      */
     @Override
-    public ArrayList<int[]> getMoves() {
-        Board board = Board.getInstance();
-        ArrayList<int[]> validMoves = new ArrayList<>();
+    public ArrayList<int[]> getMoves(Square[][] board) {
+        if (!inPlay){ return null; }
+        ArrayList<int[]> moves = new ArrayList<>();
         int direction;
 
         //White moves "bottom to top" so its row is decreasing
@@ -33,29 +32,29 @@ public class Pawn extends Piece {
         }
 
         if (!moved){
-            if (!board.getBoard()[row+direction][col].isOccupied() &&
-                    !board.getBoard()[row+direction+direction][col].isOccupied()){
-                validMoves.add(new int[]{row, col, row+direction+direction, col});
+            if (!board[row+direction][col].isOccupied() &&
+                    !board[row+direction+direction][col].isOccupied()){
+                moves.add(new int[]{row, col, row+direction+direction, col});
             }
         }
 
-        if (!board.getBoard()[row+direction][col].isOccupied()){
-            validMoves.add(new int[]{row, col, row+direction, col});
+        if (!board[row+direction][col].isOccupied()){
+            moves.add(new int[]{row, col, row+direction, col});
         }
-        if (col-1 >=0 && board.getBoard()[row+direction][col-1].isOccupied()){
-            if (board.getBoard()[row+direction][col-1].getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row+direction, col-1});
+        if (col-1 >=0 && board[row+direction][col-1].isOccupied()){
+            if (board[row+direction][col-1].getPiece().getColor() != color){
+                moves.add(new int[]{row, col, row+direction, col-1});
             }
         }
-        if (col+1 < board.getBoard().length && board.getBoard()[row+direction][col+1].isOccupied()){
-            if (board.getBoard()[row+direction][col+1].getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row+direction, col+1});
+        if (col+1 < board.length && board[row+direction][col+1].isOccupied()){
+            if (board[row+direction][col+1].getPiece().getColor() != color){
+                moves.add(new int[]{row, col, row+direction, col+1});
             }
         }
-        return validMoves;
+        return moves;
     }
 
     public char getName() {
-        return name;
+        return 'P';
     }
 }

@@ -3,7 +3,7 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 
 class BoardTest {
-    private static Board board = Board.getInstance();
+    Board board = new Board(null);
 
     @BeforeEach
     void setUp(){
@@ -23,26 +23,6 @@ class BoardTest {
         Assertions.assertEquals(8, board.getBoard()[0].length);
     }
 
-    @Test
-    @DisplayName("Testing Pawn move")
-    void pawn_move_test(){
-        Pawn pawn = new Pawn(6, 2, 0);
-
-        board.getBoard()[pawn.getRow()][pawn.getCol()].putPiece(pawn);
-
-        System.out.println("Before");
-        board.printBoard();
-        System.out.println();
-
-        ArrayList<int[]> moves = pawn.getMoves();
-        board.movePiece(moves.get(0));
-
-        System.out.println("After");
-
-        Assertions.assertNull(board.getBoard()[6][2].getPiece());
-        Assertions.assertNotNull(board.getBoard()[4][2].getPiece());
-        Assertions.assertEquals('P', board.getBoard()[4][2].getPiece().getName());
-    }
 
     @Test
     @DisplayName("Testing board setup")
@@ -58,8 +38,8 @@ class BoardTest {
 
         Assertions.assertEquals(16, whitePlayer.getPieces().size());
         Assertions.assertEquals(16, blackPlayer.getPieces().size());
-        Assertions.assertEquals(20, whitePlayer.getValidMoves().size());
-        Assertions.assertEquals(20, blackPlayer.getValidMoves().size());
+        Assertions.assertEquals(20, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(20, blackPlayer.getValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -71,15 +51,50 @@ class BoardTest {
 
         ArrayList<int[]> totalWhiteMoves = new ArrayList<>();
         for (Piece piece : whitePlayer.getPieces()){
-            totalWhiteMoves.addAll(piece.getMoves());
+            totalWhiteMoves.addAll(piece.getMoves(board.getBoard()));
         }
         ArrayList<int[]> totalBlackMoves = new ArrayList<>();
         for (Piece piece : blackPlayer.getPieces()){
-            totalBlackMoves.addAll(piece.getMoves());
+            totalBlackMoves.addAll(piece.getMoves(board.getBoard()));
         }
         Assertions.assertEquals(20, totalWhiteMoves.size());
         Assertions.assertEquals(20, totalBlackMoves.size());
     }
 
+//    @Test
+//    @DisplayName("Take test")
+//    void take_test(){
+//        Player whitePlayer = new Player(0);
+//        Player blackPlayer = new Player(1);
+//
+//        Pawn whitePawn = new Pawn(4, 5, 0);
+//        Pawn blackPawn = new Pawn(3, 4, 1);
+//
+//        King whiteKing = new King(7,4, 0);
+//        King blackKing = new King(0,3, 0);
+//
+//        whitePlayer.addPiece(whiteKing);
+//        whitePlayer.setKing(whiteKing);
+//
+//        blackPlayer.addPiece(blackKing);
+//        blackPlayer.setKing(blackKing);
+//
+//        whitePawn.setMoved(true);
+//        blackPawn.setMoved(true);
+//
+//        whitePlayer.addPiece(whitePawn);
+//        blackPlayer.addPiece(blackPawn);
+//
+//        whitePlayer.placePieces();
+//        blackPlayer.placePieces();
+//
+//        Assertions.assertEquals(2, whitePlayer.getValidMoves());
+//        Assertions.assertEquals(2, blackPlayer.getValidMoves());
+//
+//        whitePlayer.movePiece(new int[]{4, 5, 3, 4}, board.getBoard());
+//
+//        Assertions.assertEquals(1, whitePlayer.getValidMoves());
+//        Assertions.assertEquals(0, blackPlayer.getValidMoves());
+//    }
 
 }

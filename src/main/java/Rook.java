@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Rook extends Piece{
-    private char name = 'R';
     public Rook(int row, int col, int color) {
         super(row, col, color);
     }
@@ -11,19 +10,19 @@ public class Rook extends Piece{
         end when a board edge is reached or when another piece occupies the square.
      */
     @Override
-    public ArrayList<int[]> getMoves(){
-        Board board = Board.getInstance();
-        ArrayList<int[]> validMoves = new ArrayList<>();
+    public ArrayList<int[]> getMoves(Square[][] board){
+        if (!inPlay){ return null; }
+        ArrayList<int[]> moves = new ArrayList<>();
 
         //Left
         int left = 1;
         while (col-left >= 0){
-            Square currSquare = board.getBoard()[row][col - left];
+            Square currSquare = board[row][col - left];
             if (!currSquare.isOccupied()){
-                validMoves.add(new int[]{row, col, row, col-left});
+                moves.add(new int[]{row, col, row, col-left});
             }
             else if (currSquare.getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row, col-left});
+                moves.add(new int[]{row, col, row, col-left});
                 break;
             }
             else{
@@ -34,13 +33,13 @@ public class Rook extends Piece{
 
         //Right
         int right = 1;
-        while (col+right < board.getBoard().length){
-            Square currSquare = board.getBoard()[row][col + right];
+        while (col+right < board.length){
+            Square currSquare = board[row][col + right];
             if (!currSquare.isOccupied()){
-                validMoves.add(new int[]{row, col, row, col+right});
+                moves.add(new int[]{row, col, row, col+right});
             }
             else if (currSquare.getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row, col+right});
+                moves.add(new int[]{row, col, row, col+right});
                 break;
             }
             else {
@@ -52,12 +51,12 @@ public class Rook extends Piece{
         //Up
         int up = 1;
         while (row-up >= 0){
-            Square currSquare = board.getBoard()[row - up][col];
+            Square currSquare = board[row - up][col];
             if (!currSquare.isOccupied()){
-                validMoves.add(new int[]{row, col, row-up, col});
+                moves.add(new int[]{row, col, row-up, col});
             }
             else if (currSquare.getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row-up, col});
+                moves.add(new int[]{row, col, row-up, col});
                 break;
             }
             else {
@@ -68,13 +67,13 @@ public class Rook extends Piece{
 
         //Down
         int down = 1;
-        while (row+down < board.getBoard().length){
-            Square currSquare = board.getBoard()[row + down][col];
+        while (row+down < board.length){
+            Square currSquare = board[row + down][col];
             if (!currSquare.isOccupied()){
-                validMoves.add(new int[]{row, col, row+down, col});
+                moves.add(new int[]{row, col, row+down, col});
             }
             else if (currSquare.getPiece().getColor() != color){
-                validMoves.add(new int[]{row, col, row+down, col});
+                moves.add(new int[]{row, col, row+down, col});
                 break;
             }
             else {
@@ -82,10 +81,10 @@ public class Rook extends Piece{
             }
             down++;
         }
-        return validMoves;
+        return moves;
     }
 
     public char getName() {
-        return name;
+        return 'R';
     }
 }

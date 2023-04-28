@@ -7,13 +7,14 @@ import java.util.ArrayList;
 public abstract class Piece {
     protected int row, col;
     protected int color;
+    protected boolean inPlay = true;
 
     public Piece(int row, int col, int color){
         this.row = row;
         this.col = col;
         this.color = color;
     }
-    public abstract ArrayList<int[]> getMoves();
+    public abstract ArrayList<int[]> getMoves(Square[][] board);
 
     public int getRow() {
         return row;
@@ -34,6 +35,12 @@ public abstract class Piece {
     public int getColor() {
         return color;
     }
+
+    public boolean isInPlay(){
+        return inPlay;
+    }
+
+    public void setInPlay(boolean inPlay){this.inPlay = inPlay;}
 
     public abstract char getName();
 }

@@ -1,11 +1,7 @@
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class QueenTest {
-    private static Board board = Board.getInstance();
+    Board board = new Board(null);
 
     @BeforeEach
     void setUp(){
@@ -24,7 +20,7 @@ class QueenTest {
         Queen queen = new Queen(4, 4, 0);
         board.getBoard()[4][4].putPiece(queen);
 
-        Assertions.assertEquals(27, queen.getMoves().size());
+        Assertions.assertEquals(27, queen.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -40,10 +36,10 @@ class QueenTest {
         board.getBoard()[queen3.getRow()][queen3.getCol()].putPiece(queen3);
         board.getBoard()[queen4.getRow()][queen4.getCol()].putPiece(queen4);
 
-        Assertions.assertEquals(21, queen1.getMoves().size());
-        Assertions.assertEquals(21, queen2.getMoves().size());
-        Assertions.assertEquals(21, queen3.getMoves().size());
-        Assertions.assertEquals(21, queen4.getMoves().size());
+        Assertions.assertEquals(21, queen1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(21, queen2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(21, queen3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(21, queen4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -59,10 +55,10 @@ class QueenTest {
         board.getBoard()[queen3.getRow()][queen3.getCol()].putPiece(queen3);
         board.getBoard()[queen4.getRow()][queen4.getCol()].putPiece(queen4);
 
-        Assertions.assertEquals(18, queen1.getMoves().size());
-        Assertions.assertEquals(18, queen2.getMoves().size());
-        Assertions.assertEquals(18, queen3.getMoves().size());
-        Assertions.assertEquals(18, queen4.getMoves().size());
+        Assertions.assertEquals(18, queen1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(18, queen2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(18, queen3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(18, queen4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -83,7 +79,7 @@ class QueenTest {
         board.getBoard()[queen5.getRow()][queen5.getCol()].putPiece(queen5);
         board.getBoard()[queen6.getRow()][queen6.getCol()].putPiece(queen6);
 
-        Assertions.assertEquals(16, queen1.getMoves().size());
+        Assertions.assertEquals(16, queen1.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -104,6 +100,6 @@ class QueenTest {
         board.getBoard()[queen5.getRow()][queen5.getCol()].putPiece(queen5);
         board.getBoard()[queen6.getRow()][queen6.getCol()].putPiece(queen6);
 
-        Assertions.assertEquals(21, queen1.getMoves().size());
+        Assertions.assertEquals(21, queen1.getMoves(board.getBoard()).size());
     }
 }

@@ -4,23 +4,13 @@ import java.util.Scanner;
 
 public class Board {
     private Square[][] board;
-    private static Board instance = null;
 
-    //TODO: take in file for setup for easier testing
-    public Board(){
-        resetBoard();
-    }
-
-    //Copy constructor
-    public Board(Board board){
-        this.board = board.getBoard();
-    }
-
-    public static Board getInstance(){
-        if (instance == null) {
-            instance = new Board();
+    public Board(Square[][] board){
+        if (board != null){
+            this.board = board;
+        } else {
+            resetBoard();
         }
-        return instance;
     }
 
     public void setupBoard(String filename, Player whitePlayer, Player blackPlayer) {
@@ -38,47 +28,47 @@ public class Board {
                     currPlayer = blackPlayer;
                 }
                 switch (piece[0]) {
-                    case "P":
+                    case "P" -> {
                         Pawn pawn = new Pawn(
                                 Integer.parseInt(piece[2]),
                                 Integer.parseInt(piece[3]),
                                 Integer.parseInt(piece[1])
                         );
                         currPlayer.addPiece(pawn);
-                        break;
-                    case "R":
+                    }
+                    case "R" -> {
                         Rook rook = new Rook(
                                 Integer.parseInt(piece[2]),
                                 Integer.parseInt(piece[3]),
                                 Integer.parseInt(piece[1])
                         );
                         currPlayer.addPiece(rook);
-                        break;
-                    case "N":
+                    }
+                    case "N" -> {
                         Knight knight = new Knight(
                                 Integer.parseInt(piece[2]),
                                 Integer.parseInt(piece[3]),
                                 Integer.parseInt(piece[1])
                         );
                         currPlayer.addPiece(knight);
-                        break;
-                    case "B":
+                    }
+                    case "B" -> {
                         Bishop bishop = new Bishop(
                                 Integer.parseInt(piece[2]),
                                 Integer.parseInt(piece[3]),
                                 Integer.parseInt(piece[1])
                         );
                         currPlayer.addPiece(bishop);
-                        break;
-                    case "Q":
+                    }
+                    case "Q" -> {
                         Queen queen = new Queen(
                                 Integer.parseInt(piece[2]),
                                 Integer.parseInt(piece[3]),
                                 Integer.parseInt(piece[1])
                         );
                         currPlayer.addPiece(queen);
-                        break;
-                    case "K":
+                    }
+                    case "K" -> {
                         King king = new King(
                                 Integer.parseInt(piece[2]),
                                 Integer.parseInt(piece[3]),
@@ -86,14 +76,14 @@ public class Board {
                         );
                         currPlayer.addPiece(king);
                         currPlayer.setKing(king);
-                        break;
+                    }
                 }
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        whitePlayer.placePieces();
-        blackPlayer.placePieces();
+        whitePlayer.placePieces(board);
+        blackPlayer.placePieces(board);
     }
 
         public void resetBoard(){
@@ -124,23 +114,4 @@ public class Board {
         }
         System.out.println("  0 1 2 3 4 5 6 7");
     }
-
-    public void movePiece(int[] move){
-        int oldRow = move[0], oldCol = move[1], newRow = move[2], newCol = move[3];
-        Piece movingPiece = board[oldRow][oldCol].getPiece();
-        board[newRow][newCol].setPiece(movingPiece);
-        board[oldRow][oldCol].setPiece(null);
-        movingPiece.setRow(newRow);
-        movingPiece.setCol(newCol);
-    }
-
-    public void movePieceBack(int[] move){
-        int newRow = move[0], newCol = move[1], oldRow = move[2], oldCol = move[3];
-        Piece movingPiece = this.board[oldRow][oldCol].getPiece();
-        this.board[newRow][newCol].setPiece(movingPiece);
-        this.board[oldRow][oldCol].setPiece(null);
-        movingPiece.setRow(newRow);
-        movingPiece.setCol(newCol);
-    }
-
 }

@@ -15,11 +15,13 @@ public class Square {
     }
 
     public void putPiece(Piece piece){
+        if (this.piece != null){
+            this.piece.setInPlay(false);
+        }
         this.piece = piece;
     }
 
     public Piece getPiece() {
         return piece;
     }
-    public void setPiece(Piece piece) {this.piece = piece;}
 }

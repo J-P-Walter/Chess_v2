@@ -2,26 +2,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Player {
-    private int color;
+    private final int color;
 
     private ArrayList<Piece> pieces = new ArrayList<>();
     private ArrayList<int[]> validMoves = new ArrayList<>();
 
-    public ArrayList<int[]> getValidMoves(){
-        for (Piece piece : pieces){
-            validMoves.addAll(piece.getMoves());
-        }
-
-        for (int i = validMoves.size()-1; i >= 0; i--){
-            Board.getInstance().movePiece(validMoves.get(i));
-            if (king.isChecked(Board.getInstance(), color)){
-                Board.getInstance().movePieceBack(validMoves.get(i));
-                validMoves.remove(i);
-            } else {
-                Board.getInstance().movePieceBack(validMoves.get(i));
-            };
-
-        }
+    public ArrayList<int[]> getValidMoves(Square[][] board){
 
         return validMoves;
     }
@@ -38,10 +24,10 @@ public class Player {
     public void addPiece(Piece piece){
         pieces.add(piece);
     }
-    public void placePieces(){
-        Board board = Board.getInstance();
+
+    public void placePieces(Square[][] board){
         for (Piece piece : pieces){
-            board.getBoard()[piece.getRow()][piece.getCol()].setPiece(piece);
+            board[piece.getRow()][piece.getCol()].putPiece(piece);
         }
     }
     public King getKing(){
@@ -53,6 +39,16 @@ public class Player {
 
     public int getColor() {
         return color;
+    }
+
+
+    public void movePiece(int[] move, Square[][] board){
+        int oldRow = move[0], oldCol = move[1], newRow = move[2], newCol = move[3];
+        Piece movingPiece = board[oldRow][oldCol].getPiece();
+        board[newRow][newCol].putPiece(movingPiece);
+        board[oldRow][oldCol].putPiece(null);
+        movingPiece.setRow(newRow);
+        movingPiece.setCol(newCol);
     }
 }
 

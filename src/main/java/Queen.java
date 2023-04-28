@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Queen extends Piece{
-    private char name = 'Q';
     public Queen(int row, int col, int color) {
         super(row, col, color);
     }
@@ -12,20 +11,22 @@ public class Queen extends Piece{
         queen's move list 
     */
     @Override
-    public ArrayList<int[]> getMoves() {
-        ArrayList<int[]> validMoves = new ArrayList<>();
+    public ArrayList<int[]> getMoves(Square[][] board) {
+        if (!inPlay){ return null; }
+
+        ArrayList<int[]> moves = new ArrayList<>();
 
         Rook rook = new Rook(row, col, color);
-        validMoves.addAll(rook.getMoves());
+        moves.addAll(rook.getMoves(board));
 
         Bishop bishop = new Bishop(row, col, color);
-        validMoves.addAll(bishop.getMoves());
+        moves.addAll(bishop.getMoves(board));
 
-        return validMoves;
+        return moves;
     }
 
     public char getName() {
-        return name;
+        return 'Q';
     }
 }
 

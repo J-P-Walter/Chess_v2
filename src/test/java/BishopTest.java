@@ -1,12 +1,7 @@
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class BishopTest {
-    private static Board board = Board.getInstance();
-
+    Board board = new Board(null);
     @BeforeEach
     void setUp(){
         board.resetBoard();
@@ -24,11 +19,11 @@ class BishopTest {
         Bishop bishop = new Bishop(4, 4, 0);
         board.getBoard()[4][4].putPiece(bishop);
 
-        Assertions.assertEquals(13, bishop.getMoves().size());
-        Assertions.assertTrue(Arrays.equals(bishop.getMoves().get(3), new int[]{4, 4, 0, 0}));
-        Assertions.assertTrue(Arrays.equals(bishop.getMoves().get(6), new int[]{4, 4, 1, 7}));
-        Assertions.assertTrue(Arrays.equals(bishop.getMoves().get(9), new int[]{4, 4, 7, 1}));
-        Assertions.assertTrue(Arrays.equals(bishop.getMoves().get(12), new int[]{4, 4, 7, 7}));
+        Assertions.assertEquals(13, bishop.getMoves(board.getBoard()).size());
+        Assertions.assertArrayEquals(bishop.getMoves(board.getBoard()).get(3), new int[]{4, 4, 0, 0});
+        Assertions.assertArrayEquals(bishop.getMoves(board.getBoard()).get(6), new int[]{4, 4, 1, 7});
+        Assertions.assertArrayEquals(bishop.getMoves(board.getBoard()).get(9), new int[]{4, 4, 7, 1});
+        Assertions.assertArrayEquals(bishop.getMoves(board.getBoard()).get(12), new int[]{4, 4, 7, 7});
     }
 
     @Test
@@ -44,10 +39,10 @@ class BishopTest {
         board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
         board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
 
-        Assertions.assertEquals(7, bishop1.getMoves().size());
-        Assertions.assertEquals(7, bishop2.getMoves().size());
-        Assertions.assertEquals(7, bishop3.getMoves().size());
-        Assertions.assertEquals(7, bishop4.getMoves().size());
+        Assertions.assertEquals(7, bishop1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, bishop2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, bishop3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, bishop4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -63,10 +58,10 @@ class BishopTest {
         board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
         board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
 
-        Assertions.assertEquals(6, bishop1.getMoves().size());
-        Assertions.assertEquals(6, bishop2.getMoves().size());
-        Assertions.assertEquals(6, bishop3.getMoves().size());
-        Assertions.assertEquals(6, bishop4.getMoves().size());
+        Assertions.assertEquals(6, bishop1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, bishop2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, bishop3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, bishop4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -82,7 +77,7 @@ class BishopTest {
         board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
         board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
 
-        Assertions.assertEquals(6, bishop1.getMoves().size());
+        Assertions.assertEquals(6, bishop1.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -98,6 +93,6 @@ class BishopTest {
         board.getBoard()[bishop3.getRow()][bishop3.getCol()].putPiece(bishop3);
         board.getBoard()[bishop4.getRow()][bishop4.getCol()].putPiece(bishop4);
 
-        Assertions.assertEquals(9, bishop1.getMoves().size());
+        Assertions.assertEquals(9, bishop1.getMoves(board.getBoard()).size());
     }
 }

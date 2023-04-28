@@ -1,11 +1,7 @@
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class KingTest {
-    private static Board board = Board.getInstance();
+    Board board = new Board(null);
 
     @BeforeEach
     void setUp(){
@@ -24,16 +20,16 @@ class KingTest {
         King king = new King(4, 4, 0);
         board.getBoard()[4][4].putPiece(king);
 
-        Assertions.assertEquals(8, king.getMoves().size());
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(0), new int[]{4, 4, 4, 3}));
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(1), new int[]{4, 4, 4, 5}));
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(2), new int[]{4, 4, 3, 4}));
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(3), new int[]{4, 4, 5, 4}));
+        Assertions.assertEquals(8, king.getMoves(board.getBoard()).size());
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(0), new int[]{4, 4, 4, 3});
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(1), new int[]{4, 4, 4, 5});
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(2), new int[]{4, 4, 3, 4});
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(3), new int[]{4, 4, 5, 4});
 
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(4), new int[]{4, 4, 3, 3}));
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(5), new int[]{4, 4, 3, 5}));
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(6), new int[]{4, 4, 5, 3}));
-        Assertions.assertTrue(Arrays.equals(king.getMoves().get(7), new int[]{4, 4, 5, 5}));
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(4), new int[]{4, 4, 3, 3});
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(5), new int[]{4, 4, 3, 5});
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(6), new int[]{4, 4, 5, 3});
+        Assertions.assertArrayEquals(king.getMoves(board.getBoard()).get(7), new int[]{4, 4, 5, 5});
     }
 
     @Test
@@ -49,10 +45,10 @@ class KingTest {
         board.getBoard()[king3.getRow()][king3.getCol()].putPiece(king3);
         board.getBoard()[king4.getRow()][king4.getCol()].putPiece(king4);
 
-        Assertions.assertEquals(5, king1.getMoves().size());
-        Assertions.assertEquals(5, king2.getMoves().size());
-        Assertions.assertEquals(5, king3.getMoves().size());
-        Assertions.assertEquals(5, king4.getMoves().size());
+        Assertions.assertEquals(5, king1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(5, king2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(5, king3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(5, king4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -68,10 +64,10 @@ class KingTest {
         board.getBoard()[king3.getRow()][king3.getCol()].putPiece(king3);
         board.getBoard()[king4.getRow()][king4.getCol()].putPiece(king4);
 
-        Assertions.assertEquals(3, king1.getMoves().size());
-        Assertions.assertEquals(3, king2.getMoves().size());
-        Assertions.assertEquals(3, king3.getMoves().size());
-        Assertions.assertEquals(3, king4.getMoves().size());
+        Assertions.assertEquals(3, king1.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(3, king2.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(3, king3.getMoves(board.getBoard()).size());
+        Assertions.assertEquals(3, king4.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -87,7 +83,7 @@ class KingTest {
         board.getBoard()[king3.getRow()][king3.getCol()].putPiece(king3);
         board.getBoard()[king4.getRow()][king4.getCol()].putPiece(king4);
 
-        Assertions.assertEquals(5, king1.getMoves().size());
+        Assertions.assertEquals(5, king1.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -101,7 +97,7 @@ class KingTest {
         board.getBoard()[rook1.getRow()][rook1.getCol()].putPiece(rook1);
         board.getBoard()[rook2.getRow()][rook2.getCol()].putPiece(rook2);
 
-        Assertions.assertEquals(8, king1.getMoves().size());
+        Assertions.assertEquals(8, king1.getMoves(board.getBoard()).size());
     }
 
     @Test
@@ -112,14 +108,14 @@ class KingTest {
 
         King whiteKing = new King(4,4, 0);
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(4, 1, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -133,14 +129,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whiteRook);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(4, 1, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -152,14 +148,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(4, 1, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -170,14 +166,14 @@ class KingTest {
 
         King whiteKing = new King(3,3, 0);
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(3, 6, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -191,14 +187,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whiteRook);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(3, 6, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -210,14 +206,14 @@ class KingTest {
         King whiteKing = new King(3,3, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(3, 6, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -228,14 +224,14 @@ class KingTest {
 
         King whiteKing = new King(4,4, 0);
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(1, 4, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -249,14 +245,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whiteRook);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(1, 4, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -268,14 +264,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(1, 4, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -286,14 +282,14 @@ class KingTest {
 
         King whiteKing = new King(3,3, 0);
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(6, 3, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -307,14 +303,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whiteRook);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Rook blackRook = new Rook(6, 3, 1);
         blackPlayer.addPiece(blackRook);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -326,14 +322,14 @@ class KingTest {
         King whiteKing = new King(3,3, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(6, 3, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -345,14 +341,14 @@ class KingTest {
         King whiteKing = new King(6,6, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(2, 2, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -366,14 +362,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whitePawn);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(2, 2, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -385,14 +381,14 @@ class KingTest {
         King whiteKing = new King(6,6, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Pawn blackPawn = new Pawn(2, 2, 1);
         blackPlayer.addPiece(blackPawn);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -404,14 +400,14 @@ class KingTest {
         King whiteKing = new King(6,1, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(2, 5, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -425,14 +421,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whitePawn);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(2, 5, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -444,14 +440,14 @@ class KingTest {
         King whiteKing = new King(6,1, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Pawn blackPawn = new Pawn(2, 5, 1);
         blackPlayer.addPiece(blackPawn);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -463,14 +459,14 @@ class KingTest {
         King whiteKing = new King(2,5, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(6, 1, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -484,14 +480,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whitePawn);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(6, 1, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -503,14 +499,14 @@ class KingTest {
         King whiteKing = new King(2,5, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Pawn blackPawn = new Pawn(6, 1, 1);
         blackPlayer.addPiece(blackPawn);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -522,14 +518,14 @@ class KingTest {
         King whiteKing = new King(1,1, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(6, 6, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -543,14 +539,14 @@ class KingTest {
 
         whitePlayer.addPiece(whiteKing);
         whitePlayer.addPiece(whitePawn);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Bishop blackBishop = new Bishop(6, 6, 1);
         blackPlayer.addPiece(blackBishop);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -562,14 +558,14 @@ class KingTest {
         King whiteKing = new King(1,1, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Pawn blackPawn = new Pawn(6, 6, 1);
         blackPlayer.addPiece(blackPawn);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     //KNIGHT MOVES
@@ -582,14 +578,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(2, 3, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -601,14 +597,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(2, 5, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -620,14 +616,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(6, 3, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -639,14 +635,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(6, 5, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -658,14 +654,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(3, 2, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -677,14 +673,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(3, 6, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -696,14 +692,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(5, 2, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -715,14 +711,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Knight blackKnight = new Knight(5, 6, 1);
         blackPlayer.addPiece(blackKnight);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -734,14 +730,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Pawn blackPawn = new Pawn(3, 3, 1);
         blackPlayer.addPiece(blackPawn);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertTrue(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -753,14 +749,14 @@ class KingTest {
         King whiteKing = new King(4,4, 0);
 
         whitePlayer.addPiece(whiteKing);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
         whitePlayer.setKing(whiteKing);
 
         Pawn blackPawn = new Pawn(4, 3, 1);
         blackPlayer.addPiece(blackPawn);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(whitePlayer.getKing().isChecked(board, whitePlayer.getColor()));
+        Assertions.assertFalse(whitePlayer.getKing().isChecked(board.getBoard(), whitePlayer.getColor()));
     }
 
     @Test
@@ -772,14 +768,14 @@ class KingTest {
         King blackKing = new King(4,4, 1);
 
         blackPlayer.addPiece(blackKing);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
         blackPlayer.setKing(blackKing);
 
         Pawn whitePawn = new Pawn(5, 3, 0);
         whitePlayer.addPiece(whitePawn);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
 
-        Assertions.assertTrue(blackPlayer.getKing().isChecked(board, blackPlayer.getColor()));
+        Assertions.assertTrue(blackPlayer.getKing().isChecked(board.getBoard(), blackPlayer.getColor()));
     }
 
     @Test
@@ -791,13 +787,13 @@ class KingTest {
         King blackKing = new King(4,4, 1);
 
         blackPlayer.addPiece(blackKing);
-        blackPlayer.placePieces();
+        blackPlayer.placePieces(board.getBoard());
         blackPlayer.setKing(blackKing);
 
         Pawn whitePawn = new Pawn(4, 5, 0);
         whitePlayer.addPiece(whitePawn);
-        whitePlayer.placePieces();
+        whitePlayer.placePieces(board.getBoard());
 
-        Assertions.assertFalse(blackPlayer.getKing().isChecked(board, blackPlayer.getColor()));
+        Assertions.assertFalse(blackPlayer.getKing().isChecked(board.getBoard(), blackPlayer.getColor()));
     }
 }
