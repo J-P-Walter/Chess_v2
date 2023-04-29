@@ -99,19 +99,23 @@ public class Board {
 
     public void printBoard(){
         int idx = 0;
+        System.out.println("  -------------------------");
         for (Square[] row : board){
-            System.out.print(idx + " ");
+            System.out.print(idx + " |");
             for (Square p : row){
                 if (!p.isOccupied()){
-                    System.out.print("_ ");
+                    System.out.print("  |");
                 }
                 else {
-                    System.out.print(p.getPiece().getName() + " ");
+                    String color = p.getPiece().getColor() == 0 ? "W" : "B";
+                    System.out.print(color + p.getPiece().getName() + "|");
                 }
             }
             System.out.println();
+            System.out.println("  -------------------------");
+
             idx++;
         }
-        System.out.println("  0 1 2 3 4 5 6 7");
+        System.out.println("   0  1  2  3  4  5  6  7");
     }
 }
