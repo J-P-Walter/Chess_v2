@@ -1,8 +1,15 @@
 import java.util.ArrayList;
 
 public class Rook extends Piece{
+
+    private boolean moved = false;
+
     public Rook(int row, int col, int color) {
         super(row, col, color);
+    }
+
+    public void setMoved(boolean moved) {
+        this.moved = moved;
     }
 
     /*

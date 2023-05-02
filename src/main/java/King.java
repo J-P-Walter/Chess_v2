@@ -4,6 +4,12 @@ import java.util.ArrayList;
 //TODO: implement isChecked method
 
 public class King extends Piece{
+    private boolean moved = false;
+
+    public void setMoved(boolean moved) {
+        this.moved = moved;
+    }
+
     public King(int row, int col, int color) { super(row, col, color); }
 
     /*

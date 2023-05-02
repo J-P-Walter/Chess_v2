@@ -4,11 +4,11 @@ public class Player {
     private final int color;
 
     private ArrayList<Piece> pieces = new ArrayList<>();
-    private ArrayList<int[]> validMoves = new ArrayList<>();
     King king;
 
     public ArrayList<int[]> getValidMoves(Square[][] board){
-        validMoves = new ArrayList<>();
+        ArrayList<int[]> validMoves = new ArrayList<>();
+
         for (Piece p : pieces){
             if (p.getMoves(board) == null){
                 continue;
@@ -21,6 +21,9 @@ public class Player {
                 undoTestMove(move, board);
             }
         }
+
+        //check castle move
+
         return validMoves;
     }
 
@@ -87,8 +90,17 @@ public class Player {
         startSquare.setPiece(null);
         endSquare.getPiece().setInPlay(false);
         endSquare.setPiece(movingPiece);
-    }
 
+        if (movingPiece.getClass() == Pawn.class){
+            ((Pawn) movingPiece).setMoved(true);
+        }
+        if (movingPiece.getClass() == Rook.class){
+            ((Rook) movingPiece).setMoved(true);
+        }
+        if (movingPiece.getClass() == King.class){
+            ((King) movingPiece).setMoved(true);
+        }
+    }
 }
 
 
