@@ -109,9 +109,10 @@ public class King extends Piece{
             Square currSquare = checkBoard[row][col - left];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'R'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && left == 1){
+                        return true;
+                    }
+                    if (currSquare.getPiece().getName() == 'R' || currSquare.getPiece().getName() == 'Q'){
                         return true;
                     }
                     else { break; }
@@ -127,11 +128,13 @@ public class King extends Piece{
             Square currSquare = checkBoard[row][col + right];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'R'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && right == 1){
                         return true;
-                    } else { break; }
+                    }
+                    if (currSquare.getPiece().getName() == 'R' || currSquare.getPiece().getName() == 'Q'){
+                        return true;
+                    }
+                    else { break; }
                 } else { break; }
             }
             right++;
@@ -143,11 +146,13 @@ public class King extends Piece{
             Square currSquare = checkBoard[row - up][col];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'R'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && up == 1){
                         return true;
-                    } else { break; }
+                    }
+                    if (currSquare.getPiece().getName() == 'R' || currSquare.getPiece().getName() == 'Q'){
+                        return true;
+                    }
+                    else { break; }
                 } else { break; }
             }
             up++;
@@ -159,9 +164,10 @@ public class King extends Piece{
             Square currSquare = checkBoard[row + down][col];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'R'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && down == 1){
+                        return true;
+                    }
+                    if (currSquare.getPiece().getName() == 'R' || currSquare.getPiece().getName() == 'Q'){
                         return true;
                     } else { break; }
                 } else { break; }
@@ -175,9 +181,10 @@ public class King extends Piece{
             Square currSquare = checkBoard[row-idx][col-idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'B'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && idx == 1){
+                        return true;
+                    }
+                    if (currSquare.getPiece().getName() == 'B' || currSquare.getPiece().getName() == 'Q'){
                         return true;
                     } else { break; }
                 } else { break; }
@@ -191,9 +198,10 @@ public class King extends Piece{
             Square currSquare = checkBoard[row - idx][col + idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'B'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && idx == 1){
+                        return true;
+                    }
+                    if (currSquare.getPiece().getName() == 'B' || currSquare.getPiece().getName() == 'Q'){
                         return true;
                     } else { break; }
                 } else { break; }
@@ -207,9 +215,10 @@ public class King extends Piece{
             Square currSquare = checkBoard[row + idx][col - idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'B'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && idx == 1){
+                        return true;
+                    }
+                    if (currSquare.getPiece().getName() == 'B' || currSquare.getPiece().getName() == 'Q'){
                         return true;
                     } else { break; }
                 } else { break; }
@@ -223,9 +232,10 @@ public class King extends Piece{
             Square currSquare = checkBoard[row + idx][col + idx];
             if (currSquare.isOccupied()){
                 if (currSquare.getPiece().getColor() != color){
-                    if (    currSquare.getPiece().getName() == 'B'
-                            || currSquare.getPiece().getName() == 'Q'
-                            || currSquare.getPiece().getName() == 'K'){
+                    if (currSquare.getPiece().getName() == 'K' && idx == 1){
+                        return true;
+                    }
+                    if (currSquare.getPiece().getName() == 'B' || currSquare.getPiece().getName() == 'Q'){
                         return true;
                     } else { break; }
                 } else { break; }

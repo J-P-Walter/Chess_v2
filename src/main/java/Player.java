@@ -22,8 +22,6 @@ public class Player {
             }
         }
 
-        //check castle move
-
         return validMoves;
     }
 
@@ -65,6 +63,9 @@ public class Player {
         startSquare.setPiece(null);
         endSquare.setPrevPiece();
         endSquare.setPiece(movingPiece);
+
+        movingPiece.setRow(newRow);
+        movingPiece.setCol(newCol);
     }
 
     public void undoTestMove(int[] move, Square[][] board){
@@ -77,6 +78,10 @@ public class Player {
 
         startSquare.setPiece(startSquare.getPrevPiece());
         endSquare.setPiece(movingPiece);
+
+        movingPiece.setRow(newRow);
+        movingPiece.setCol(newCol);
+        startSquare.setPrevPiece();
     }
 
     public void movePiece(int[] move, Square[][] board){
@@ -90,6 +95,9 @@ public class Player {
         startSquare.setPiece(null);
         endSquare.getPiece().setInPlay(false);
         endSquare.setPiece(movingPiece);
+
+        movingPiece.setRow(newRow);
+        movingPiece.setCol(newCol);
 
         if (movingPiece.getClass() == Pawn.class){
             ((Pawn) movingPiece).setMoved(true);

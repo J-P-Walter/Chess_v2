@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4774c540-8f98-42e5-9287-a120c2ab4f57" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/check_test_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/check_test_2.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CheckTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,8 +74,8 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'Chess_v2.test'">
-    <configuration name="BishopTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.CheckTest.checkmate">
+    <configuration name="CheckTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -88,7 +88,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;BishopTest&quot;" />
+            <option value="&quot;CheckTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -98,7 +98,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BoardTest.board_setup_test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CheckTest.check_pawn" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -111,7 +111,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;BoardTest.board_setup_test&quot;" />
+            <option value="&quot;CheckTest.check_pawn&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -121,7 +121,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="BoardTest.take_test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CheckTest.check_rook_up" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -134,7 +134,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;BoardTest.take_test&quot;" />
+            <option value="&quot;CheckTest.check_rook_up&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -144,7 +144,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="KnightTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CheckTest.checkmate" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -157,7 +157,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;KnightTest&quot;" />
+            <option value="&quot;CheckTest.checkmate&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -167,7 +167,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'Chess_v2.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CheckTest.self_check" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -179,6 +179,8 @@
         <option name="taskNames">
           <list>
             <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;CheckTest.self_check&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -190,11 +192,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'Chess_v2.test'" />
-        <item itemvalue="Gradle.KnightTest" />
-        <item itemvalue="Gradle.BoardTest.take_test" />
-        <item itemvalue="Gradle.BoardTest.board_setup_test" />
-        <item itemvalue="Gradle.BishopTest" />
+        <item itemvalue="Gradle.CheckTest.checkmate" />
+        <item itemvalue="Gradle.CheckTest.check_pawn" />
+        <item itemvalue="Gradle.CheckTest" />
+        <item itemvalue="Gradle.CheckTest.self_check" />
+        <item itemvalue="Gradle.CheckTest.check_rook_up" />
       </list>
     </recent_temporary>
   </component>
@@ -219,5 +221,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Player.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
