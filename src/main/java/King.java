@@ -6,11 +6,9 @@ import java.util.ArrayList;
 public class King extends Piece{
     private boolean moved = false;
 
-    public void setMoved(boolean moved) {
-        this.moved = moved;
+    public King(int row, int col, int color) {
+        super(row, col, color);
     }
-
-    public King(int row, int col, int color) { super(row, col, color); }
 
     /*
         Kings can move both orthogonal and diagonal but only once, simply checks each of the eight squares
@@ -95,13 +93,15 @@ public class King extends Piece{
         return moves;
     }
 
+
+
     /*
-    Checks every direction the king could be attacked from
-    If an attacker is found, checks the type to make sure it can actually check the king
-        ex. a rook on a diagonal cannot, but a bishop can
-    To be used to determine if a player is in check and if moves are allowed
-        ex. you cannot put yourself in check
-*/
+        Checks every direction the king could be attacked from
+        If an attacker is found, checks the type to make sure it can actually check the king
+            ex. a rook on a diagonal cannot, but a bishop can
+        To be used to determine if a player is in check and if moves are allowed
+            ex. you cannot put yourself in check
+    */
     public boolean isChecked(Square[][] checkBoard, int color){
         //Left
         int left = 1;
@@ -370,6 +370,12 @@ public class King extends Piece{
 
     public char getName() {
         return 'K';
+    }
+    public void setMoved(boolean moved) {
+        this.moved = moved;
+    }
+    public boolean isMoved() {
+        return moved;
     }
 }
 

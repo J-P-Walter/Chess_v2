@@ -1,23 +1,12 @@
 import java.util.ArrayList;
 
-//TODO: implement promotion, en passant
-
 public class Pawn extends Piece {
     private boolean moved = false;
-
     private boolean enPassant = false;
 
     public Pawn(int row, int col, int color) {
         super(row, col, color);
     }
-
-    public void setMoved(boolean moved) {
-        this.moved = moved;
-    }
-
-    public void setEnPassant(boolean enPassant) { this.enPassant = enPassant; }
-
-    public boolean isEnPassant() { return enPassant; }
 
     /*
         Pawns can only move forward in the same column, unless attacking, in which case it can only do so diagonally
@@ -37,6 +26,7 @@ public class Pawn extends Piece {
             direction = 1;
         }
 
+        //Initial move can move two squares
         if (!moved){
             if (!board[row+direction][col].isOccupied() &&
                     !board[row+direction+direction][col].isOccupied()){
@@ -47,6 +37,8 @@ public class Pawn extends Piece {
         if (!board[row+direction][col].isOccupied()){
             moves.add(new int[]{row, col, row+direction, col});
         }
+
+        //Attacking moves
         if (col-1 >=0 && board[row+direction][col-1].isOccupied()){
             if (board[row+direction][col-1].getPiece().getColor() != color){
                 moves.add(new int[]{row, col, row+direction, col-1});
@@ -57,6 +49,9 @@ public class Pawn extends Piece {
                 moves.add(new int[]{row, col, row+direction, col+1});
             }
         }
+
+        //Checking if opponent pawn moved twice and is able to be taken
+        //by en-passant
         if (col-1 >= 0 && board[row][col-1].isOccupied()){
             if (board[row][col-1].getPiece().getName() == 'P'){
                 Pawn enemyPawn = (Pawn) board[row][col-1].getPiece();
@@ -80,5 +75,10 @@ public class Pawn extends Piece {
     public char getName() {
         return 'P';
     }
+    public void setMoved(boolean moved) {
+        this.moved = moved;
+    }
+    public void setEnPassant(boolean enPassant) { this.enPassant = enPassant; }
+    public boolean isEnPassant() { return enPassant; }
 
 }

@@ -13,18 +13,14 @@ public class Square {
     public boolean isOccupied() {
         return (piece != null);
     }
-
     public void setPiece(Piece piece){
         if (this.piece != null){
             prevPiece = this.piece;
         }
         this.piece = piece;
     }
-
     public Piece getPrevPiece(){ return prevPiece; }
-
     public void setPrevPiece(){ this.prevPiece = piece; }
-
     public Piece getPiece() {
         return piece;
     }

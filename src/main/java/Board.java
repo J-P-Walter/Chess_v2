@@ -13,6 +13,10 @@ public class Board {
         }
     }
 
+    /*
+        Reads in file and assigns pieces to players and places the pieces on the board
+        Can be used for start of games as well as different testing situations
+     */
     public void setupBoard(String filename, Player whitePlayer, Player blackPlayer) {
         File file = new File(filename);
         try {
@@ -95,8 +99,6 @@ public class Board {
         }
     }
 
-    public Square[][] getBoard(){ return board; }
-
     public void printBoard(){
         int idx = 0;
         System.out.println("  -------------------------");
@@ -113,9 +115,10 @@ public class Board {
             }
             System.out.println();
             System.out.println("  -------------------------");
-
             idx++;
         }
         System.out.println("   0  1  2  3  4  5  6  7");
     }
+
+    public Square[][] getBoard(){ return board; }
 }
