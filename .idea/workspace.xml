@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4774c540-8f98-42e5-9287-a120c2ab4f57" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CheckTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PawnTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PawnTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +72,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'Chess_v2.test'">
+  <component name="RunManager" selected="Gradle.PawnTest.pawn_promotion">
     <configuration name="BoardTest.take_test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -88,29 +87,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;BoardTest.take_test&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CheckTest.check_pawn" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;CheckTest.check_pawn&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -166,6 +142,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="PawnTest.pawn_promotion" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;PawnTest.pawn_promotion&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="Tests in 'Chess_v2.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -189,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'Chess_v2.test'" />
+        <item itemvalue="Gradle.PawnTest.pawn_promotion" />
         <item itemvalue="Gradle.PawnTest.pawn_en_passant" />
+        <item itemvalue="Gradle.Tests in 'Chess_v2.test'" />
         <item itemvalue="Gradle.BoardTest.take_test" />
         <item itemvalue="Gradle.CheckTest.checkmate" />
-        <item itemvalue="Gradle.CheckTest.check_pawn" />
       </list>
     </recent_temporary>
   </component>

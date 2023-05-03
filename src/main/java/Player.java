@@ -115,6 +115,12 @@ public class Player {
                 board[oldRow][newCol].getPiece().setInPlay(false);
                 board[oldRow][newCol].setPiece(null);
             }
+            if (color == 0 && newRow == 0){
+                movingPiece.setInPlay(false);
+                Queen promotedQueen = new Queen(newRow, newCol, color);
+                addPiece(promotedQueen);
+                placePieces(board);
+            }
         }
 
         if (movingPiece.getClass() == Rook.class){

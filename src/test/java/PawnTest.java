@@ -105,4 +105,30 @@ class PawnTest {
 
         blackPlayer.movePiece(new int[]{4, 4, 5, 5}, board.getBoard());
     }
+
+    @Test
+    @DisplayName("Promotion Test")
+    void pawn_promotion(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(7, 7, 0);
+        King blackKing = new King(0, 0, 1);
+
+        Pawn whitePawn = new Pawn(1, 5, 0);
+        whitePawn.setMoved(true);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whitePawn);
+        blackPlayer.addPiece(blackKing);
+
+        whitePlayer.setKing(whiteKing);
+        blackPlayer.setKing(blackKing);
+
+        whitePlayer.placePieces(board.getBoard());
+        blackPlayer.placePieces(board.getBoard());
+
+        whitePlayer.movePiece(new int[]{1, 5, 0, 5}, board.getBoard());
+        Assertions.assertEquals((Queen.class), board.getBoard()[0][5].getPiece().getClass());
+    }
 }
