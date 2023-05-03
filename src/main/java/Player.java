@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class Player {
     private final int color;
@@ -19,6 +20,9 @@ public class Player {
                     validMoves.add(move);
                 }
                 undoTestMove(move, board);
+            }
+            if (p.getClass() == Pawn.class){
+                ((Pawn) p).setEnPassant(false);
             }
         }
 
@@ -91,17 +95,28 @@ public class Player {
         Square endSquare = board[newRow][newCol];
 
         Piece movingPiece = startSquare.getPiece();
-
+        Piece oppPiece = null;
+        if (endSquare.getPiece() != null){
+            oppPiece = endSquare.getPiece();
+            oppPiece.setInPlay(false);
+        }
         startSquare.setPiece(null);
-        endSquare.getPiece().setInPlay(false);
         endSquare.setPiece(movingPiece);
-
         movingPiece.setRow(newRow);
         movingPiece.setCol(newCol);
 
+        
         if (movingPiece.getClass() == Pawn.class){
             ((Pawn) movingPiece).setMoved(true);
+            if (Math.abs(oldRow-newRow) == 2){
+                ((Pawn) movingPiece).setEnPassant(true);
+            }
+            if (oldCol != newCol && oppPiece == null){
+                board[oldRow][newCol].getPiece().setInPlay(false);
+                board[oldRow][newCol].setPiece(null);
+            }
         }
+
         if (movingPiece.getClass() == Rook.class){
             ((Rook) movingPiece).setMoved(true);
         }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Pawn extends Piece {
     private boolean moved = false;
 
+    private boolean enPassant = false;
+
     public Pawn(int row, int col, int color) {
         super(row, col, color);
     }
@@ -12,6 +14,10 @@ public class Pawn extends Piece {
     public void setMoved(boolean moved) {
         this.moved = moved;
     }
+
+    public void setEnPassant(boolean enPassant) { this.enPassant = enPassant; }
+
+    public boolean isEnPassant() { return enPassant; }
 
     /*
         Pawns can only move forward in the same column, unless attacking, in which case it can only do so diagonally
@@ -51,10 +57,28 @@ public class Pawn extends Piece {
                 moves.add(new int[]{row, col, row+direction, col+1});
             }
         }
+        if (col-1 >= 0 && board[row][col-1].isOccupied()){
+            if (board[row][col-1].getPiece().getName() == 'P'){
+                Pawn enemyPawn = (Pawn) board[row][col-1].getPiece();
+                if (enemyPawn.isEnPassant()){
+                    moves.add(new int[]{row, col, row+direction, col-1});
+                }
+            }
+        }
+        if (col+1 < board.length && board[row][col+1].isOccupied()){
+            if (board[row][col+1].getPiece().getName() == 'P'){
+                Pawn enemyPawn = (Pawn) board[row][col+1].getPiece();
+                if (enemyPawn.isEnPassant()){
+                    moves.add(new int[]{row, col, row+direction, col+1});
+                }
+            }
+        }
+
         return moves;
     }
 
     public char getName() {
         return 'P';
     }
+
 }

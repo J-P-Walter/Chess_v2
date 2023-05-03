@@ -276,7 +276,6 @@ public class CheckTest {
 
         Queen blackQueen = new Queen(6, 4, 1);
 
-
         whitePlayer.addPiece(whiteKing);
         blackPlayer.addPiece(blackQueen);
         blackPlayer.addPiece(blackKing);

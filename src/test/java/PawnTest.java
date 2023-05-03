@@ -73,4 +73,36 @@ class PawnTest {
         Assertions.assertArrayEquals(blackPawn.getMoves(board.getBoard()).get(0), new int[]{3, 4, 4, 4});
         Assertions.assertArrayEquals(blackPawn.getMoves(board.getBoard()).get(1), new int[]{3, 4, 4, 5});
     }
+
+    @Test
+    @DisplayName("En-passant Test")
+    void pawn_en_passant(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King whiteKing = new King(7, 7, 0);
+        King blackKing = new King(0, 0, 1);
+
+        Pawn whitePawn = new Pawn(6, 5, 0);
+        Pawn blackPawn = new Pawn(4, 4, 1);
+        blackPawn.setMoved(true);
+
+        whitePlayer.addPiece(whiteKing);
+        whitePlayer.addPiece(whitePawn);
+        blackPlayer.addPiece(blackKing);
+        blackPlayer.addPiece(blackPawn);
+
+        whitePlayer.setKing(whiteKing);
+        blackPlayer.setKing(blackKing);
+
+        whitePlayer.placePieces(board.getBoard());
+        blackPlayer.placePieces(board.getBoard());
+
+        whitePlayer.movePiece(new int[]{6,5,4,5}, board.getBoard());
+
+        Assertions.assertEquals(2, blackPawn.getMoves(board.getBoard()).size());
+        Assertions.assertArrayEquals(blackPawn.getMoves(board.getBoard()).get(1), new int[]{4, 4, 5, 5});
+
+        blackPlayer.movePiece(new int[]{4, 4, 5, 5}, board.getBoard());
+    }
 }
