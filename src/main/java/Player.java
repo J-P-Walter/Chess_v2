@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Player {
     private final int color;
-    private ArrayList<Piece> pieces = new ArrayList<>();
+    private final ArrayList<Piece> pieces = new ArrayList<>();
     King king;
 
     public Player(int color){
@@ -44,8 +44,10 @@ public class Player {
             if (p.getClass() == Pawn.class){
                 ((Pawn) p).setEnPassant(false);
             }
+
+            //"Saves" left and right rook for castle check
             if (p.getClass() == Rook.class){
-                if (((Rook) p).isMoved() == false){
+                if (!((Rook) p).isMoved()){
                     if (p.getCol() < king.getCol()){
                         leftRook = (Rook) p;
                     }
@@ -55,6 +57,8 @@ public class Player {
                 }
             }
         }
+
+        //Checks for valid castle
         if (leftRook != null){
             int[] castle = validateCastle(board, king, leftRook);
             if (castle != null){
@@ -75,6 +79,15 @@ public class Player {
         return validMoves;
     }
 
+    /*
+        There are several steps when validating the castle moves
+        1. Check if the king has not moved
+        2. Check if the rook in question has not moved
+        3. Check if the squares between the king and the rook are unoccupied
+        4. Check if the king is placed in check on either of the two squares in the direction of the castle
+        If all of these conditions are false, a valid castle is able to be made and is added
+        to the player and king's movelists
+     */
     private int[] validateCastle(Square[][] board, King king, Rook rook) {
         int kingRow = king.getRow();
         int kingCol = king.getCol();
@@ -92,32 +105,28 @@ public class Player {
         if (rook.isMoved()){
             return null;
         }
-        if (board[kingRow][kingCol+direction].isOccupied()){
+        if (board[kingRow][kingCol+direction].isOccupied() || board[kingRow][kingCol+direction+direction].isOccupied()){
             return null;
         }
-        if (board[kingRow][kingCol+direction+direction].isOccupied()){
-            return null;
-        }
+        //Need to make sure 3 squares are unoccupied queen-side, just makes sure there is a rook king-side
         if (board[kingRow][kingCol+(direction*3)].isOccupied() && board[kingRow][kingCol+(direction*3)].getPiece().getClass() != Rook.class){
             return null;
         }
 
+        //Testing first square for check
         testMove(new int[]{kingRow, kingCol, kingRow, kingCol+direction}, board);
-
         if (king.isChecked(board, color)){
             undoTestMove(new int[]{kingRow, kingCol, kingRow, kingCol+direction}, board);
             return null;
         }
         undoTestMove(new int[]{kingRow, kingCol, kingRow, kingCol+direction}, board);
-
+        //Testing second square for check
         testMove(new int[]{kingRow, kingCol, kingRow, king.getCol()+direction+direction}, board);
         if (king.isChecked(board, color)){
             undoTestMove(new int[]{kingRow, kingCol, kingRow, king.getCol()}, board);
             return null;
         }
         undoTestMove(new int[]{kingRow, kingCol, kingRow, king.getCol()}, board);
-
-        System.out.println("VALID CASTLE");
 
         return new int[]{kingRow, kingCol, kingRow, kingCol+direction+direction, rook.getRow(), rook.getCol(), rook.getRow(), kingCol+direction};
     }
@@ -207,6 +216,7 @@ public class Player {
         }
         if (movingPiece.getClass() == King.class){
             ((King) movingPiece).setMoved(true);
+            //Takes care of moving the rook if king initiates castle
             if (Math.abs(oldCol-newCol) != 1){
                 int[] rookMove = Arrays.copyOfRange(move, 4, 8);
                 movePiece(rookMove, board);

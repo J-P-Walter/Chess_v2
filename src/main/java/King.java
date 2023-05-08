@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-//TODO: implement castling
-//TODO: implement isChecked method
-
 public class King extends Piece{
     private boolean moved = false;
 
@@ -359,9 +356,7 @@ public class King extends Piece{
             if (row+1 < checkBoard.length && col+1 < checkBoard.length){
                 Square currSquare = checkBoard[row + 1][col + 1];
                 if (currSquare.isOccupied()) {
-                    if (currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P') {
-                        return true;
-                    }
+                    return currSquare.getPiece().getColor() != color && currSquare.getPiece().getName() == 'P';
                 }
             }
         }
