@@ -4,8 +4,7 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class Game {
-    //TODO: implement game logic
-    //TODO: castling - King.java, can probably just hard code, check left/right and use copy of board using isChecked() on squares king moves through
+
     //TODO: unicode characters aren't working, try to fix
 
     public static void main(String[] args){
@@ -15,6 +14,10 @@ public class Game {
         board.setupBoard("./data/ChessSetup.txt", whitePlayer, blackPlayer);
 
         int turn = 0;
+
+        System.out.println("HOW TO PLAY");
+        System.out.println("Enter the square of the piece you want to move and its destination ex. 5 4 4 4");
+        System.out.println("To castle, enter both moves ex. 7 4 7 6 7 7 7 5");
 
         while (true){
             Player currPlayer;
@@ -31,12 +34,17 @@ public class Game {
             ArrayList<int[]> validMoves = currPlayer.getAllValidMoves(board.getBoard());
             if (validMoves.size() == 0){
                 System.out.println("Checkmate");
+                if (currPlayer.getColor() == 0){
+                    System.out.println("Black wins!");
+                }
+                else {
+                    System.out.println("White wins!");
+                }
                 break;
             }
             int[] move;
             boolean moveChosen = false;
             do {
-                System.out.println("Enter the square of the piece you want to move and its destination ex. 5 4 4 4");
                 Scanner myObj = new Scanner(System.in);
                 String[] input = myObj.nextLine().split(" ");
                 move = new int[input.length];
