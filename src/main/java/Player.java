@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.lang.Math;
+import java.util.Arrays;
 
 public class Player {
     private final int color;
@@ -19,10 +20,14 @@ public class Player {
         }
     }
 
-    public ArrayList<int[]> getValidMoves(Square[][] board){
+    public ArrayList<int[]> getAllValidMoves(Square[][] board){
         ArrayList<int[]> validMoves = new ArrayList<>();
 
+        Rook leftRook = null;
+        Rook rightRook = null;
+
         for (Piece p : pieces){
+            p.resetValidMoves();
             if (p.getMoves(board) == null){
                 continue;
             }
@@ -30,6 +35,7 @@ public class Player {
                 testMove(move, board);
                 if (!getKing().isChecked(board, color)){
                     validMoves.add(move);
+                    p.addValidMove(move);
                 }
                 undoTestMove(move, board);
             }
@@ -38,8 +44,82 @@ public class Player {
             if (p.getClass() == Pawn.class){
                 ((Pawn) p).setEnPassant(false);
             }
+            if (p.getClass() == Rook.class){
+                if (((Rook) p).isMoved() == false){
+                    if (p.getCol() < king.getCol()){
+                        leftRook = (Rook) p;
+                    }
+                    else {
+                        rightRook = (Rook) p;
+                    }
+                }
+            }
         }
+        if (leftRook != null){
+            int[] castle = validateCastle(board, king, leftRook);
+            if (castle != null){
+                validMoves.add(castle);
+                king.addValidMove(castle);
+            }
+
+        }
+       if (rightRook != null){
+            int[] castle = validateCastle(board, king, rightRook);
+            if (castle != null){
+                validMoves.add(castle);
+                king.addValidMove(castle);
+            }
+
+        }
+
         return validMoves;
+    }
+
+    private int[] validateCastle(Square[][] board, King king, Rook rook) {
+        int kingRow = king.getRow();
+        int kingCol = king.getCol();
+
+        int direction;
+        if (kingCol < rook.getCol()){
+            direction = 1;
+        } else {
+            direction = -1;
+        }
+
+        if (king.isMoved()){
+            return null;
+        }
+        if (rook.isMoved()){
+            return null;
+        }
+        if (board[kingRow][kingCol+direction].isOccupied()){
+            return null;
+        }
+        if (board[kingRow][kingCol+direction+direction].isOccupied()){
+            return null;
+        }
+        if (board[kingRow][kingCol+(direction*3)].isOccupied() && board[kingRow][kingCol+(direction*3)].getPiece().getClass() != Rook.class){
+            return null;
+        }
+
+        testMove(new int[]{kingRow, kingCol, kingRow, kingCol+direction}, board);
+
+        if (king.isChecked(board, color)){
+            undoTestMove(new int[]{kingRow, kingCol, kingRow, kingCol+direction}, board);
+            return null;
+        }
+        undoTestMove(new int[]{kingRow, kingCol, kingRow, kingCol+direction}, board);
+
+        testMove(new int[]{kingRow, kingCol, kingRow, king.getCol()+direction+direction}, board);
+        if (king.isChecked(board, color)){
+            undoTestMove(new int[]{kingRow, kingCol, kingRow, king.getCol()}, board);
+            return null;
+        }
+        undoTestMove(new int[]{kingRow, kingCol, kingRow, king.getCol()}, board);
+
+        System.out.println("VALID CASTLE");
+
+        return new int[]{kingRow, kingCol, kingRow, kingCol+direction+direction, rook.getRow(), rook.getCol(), rook.getRow(), kingCol+direction};
     }
 
     /*
@@ -127,6 +207,10 @@ public class Player {
         }
         if (movingPiece.getClass() == King.class){
             ((King) movingPiece).setMoved(true);
+            if (Math.abs(oldCol-newCol) != 1){
+                int[] rookMove = Arrays.copyOfRange(move, 4, 8);
+                movePiece(rookMove, board);
+            }
         }
     }
 

@@ -796,4 +796,134 @@ class KingTest {
 
         Assertions.assertFalse(blackPlayer.getKing().isChecked(board.getBoard(), blackPlayer.getColor()));
     }
+
+    @Test
+    @DisplayName("Left castle")
+    void king_left_castle_valid(){
+        Player whitePlayer = new Player(0);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 0, 0);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.setKing(king);
+
+        whitePlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        Assertions.assertEquals(6, king.getValidMoves().size());
+    }
+
+    @Test
+    @DisplayName("Left castle blocked")
+    void king_left_castle_blocked(){
+        Player whitePlayer = new Player(0);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 0, 0);
+        Knight knight = new Knight(7, 1, 0);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.addPiece(knight);
+        whitePlayer.setKing(king);
+
+        whitePlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        Assertions.assertEquals(5, king.getValidMoves().size());
+    }
+
+    @Test
+    @DisplayName("Left castle blocked by check")
+    void king_left_castle_blocked_by_check(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 0, 0);
+
+        Bishop blackBishop = new Bishop(4, 5, 1);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.setKing(king);
+
+        blackPlayer.addPiece(blackBishop);
+
+        whitePlayer.placePieces(board.getBoard());
+        blackPlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        Assertions.assertEquals(4, king.getValidMoves().size());
+    }
+
+    @Test
+    @DisplayName("Right castle")
+    void king_right_castle_valid(){
+        Player whitePlayer = new Player(0);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 7, 0);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.setKing(king);
+
+        whitePlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        Assertions.assertEquals(6, king.getValidMoves().size());
+    }
+
+    @Test
+    @DisplayName("Right castle blocked")
+    void king_right_castle_blocked(){
+        Player whitePlayer = new Player(0);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 7, 0);
+        Knight knight = new Knight(7, 6, 0);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.addPiece(knight);
+        whitePlayer.setKing(king);
+
+        whitePlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        Assertions.assertEquals(5, king.getValidMoves().size());
+    }
+
+    @Test
+    @DisplayName("Right castle blocked by check")
+    void king_right_castle_blocked_by_check(){
+        Player whitePlayer = new Player(0);
+        Player blackPlayer = new Player(1);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 7, 0);
+
+        Bishop blackBishop = new Bishop(4, 2, 1);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.setKing(king);
+
+        blackPlayer.addPiece(blackBishop);
+
+        whitePlayer.placePieces(board.getBoard());
+        blackPlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        Assertions.assertEquals(3, king.getValidMoves().size());
+    }
 }

@@ -34,7 +34,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -149,7 +149,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -172,7 +172,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -195,7 +195,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -215,7 +215,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(5, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(5, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -238,7 +238,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(7, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -263,7 +263,7 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(7, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -286,6 +286,6 @@ public class CheckTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(0, whitePlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(0, whitePlayer.getAllValidMoves(board.getBoard()).size());
     }
 }

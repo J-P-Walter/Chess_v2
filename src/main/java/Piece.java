@@ -8,11 +8,22 @@ public abstract class Piece {
     protected int row, col;
     protected int color;
     protected boolean inPlay = true;
+    protected ArrayList<int[]> validMoves = new ArrayList<>();
 
     public Piece(int row, int col, int color){
         this.row = row;
         this.col = col;
         this.color = color;
+    }
+
+    public void resetValidMoves(){
+        validMoves = new ArrayList<>();
+    }
+    public void addValidMove(int[] move){
+        validMoves.add(move);
+    }
+    public ArrayList<int[]> getValidMoves(){
+        return validMoves;
     }
 
     public abstract ArrayList<int[]> getMoves(Square[][] board);

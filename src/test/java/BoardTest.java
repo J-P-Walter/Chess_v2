@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-
 class BoardTest {
     Board board = new Board(null);
 
@@ -38,8 +36,8 @@ class BoardTest {
 
         Assertions.assertEquals(16, whitePlayer.getPieces().size());
         Assertions.assertEquals(16, blackPlayer.getPieces().size());
-        Assertions.assertEquals(20, whitePlayer.getValidMoves(board.getBoard()).size());
-        Assertions.assertEquals(20, blackPlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(20, whitePlayer.getAllValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(20, blackPlayer.getAllValidMoves(board.getBoard()).size());
     }
 
     @Test
@@ -69,15 +67,58 @@ class BoardTest {
         whitePlayer.placePieces(board.getBoard());
         blackPlayer.placePieces(board.getBoard());
 
-        Assertions.assertEquals(7, whitePlayer.getValidMoves(board.getBoard()).size());
-        Assertions.assertEquals(7, blackPlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, whitePlayer.getAllValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(7, blackPlayer.getAllValidMoves(board.getBoard()).size());
 
         whitePlayer.movePiece(new int[]{4, 5, 3, 4}, board.getBoard());
         System.out.println();
         System.out.println("AFTER MOVE");
 
-        Assertions.assertEquals(6, whitePlayer.getValidMoves(board.getBoard()).size());
-        Assertions.assertEquals(5, blackPlayer.getValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(6, whitePlayer.getAllValidMoves(board.getBoard()).size());
+        Assertions.assertEquals(5, blackPlayer.getAllValidMoves(board.getBoard()).size());
     }
 
+    @Test
+    @DisplayName("Left castle move test")
+    void left_castle_move_test(){
+        Player whitePlayer = new Player(0);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 0, 0);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.setKing(king);
+
+        whitePlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        whitePlayer.movePiece(new int[] {7, 4, 7, 2, 7, 0, 7, 3}, board.getBoard());
+
+        Assertions.assertEquals('K', board.getBoard()[7][2].getPiece().getName());
+        Assertions.assertEquals('R', board.getBoard()[7][3].getPiece().getName());
+    }
+
+    @Test
+    @DisplayName("Right castle move test")
+    void right_castle_move_test(){
+        Player whitePlayer = new Player(0);
+
+        King king = new King(7,4, 0);
+        Rook rook = new Rook(7, 7, 0);
+
+        whitePlayer.addPiece(king);
+        whitePlayer.addPiece(rook);
+        whitePlayer.setKing(king);
+
+        whitePlayer.placePieces(board.getBoard());
+
+        whitePlayer.getAllValidMoves(board.getBoard());
+
+        whitePlayer.movePiece(new int[] {7, 4, 7, 6, 7, 7, 7, 5}, board.getBoard());
+
+        Assertions.assertEquals('K', board.getBoard()[7][6].getPiece().getName());
+        Assertions.assertEquals('R', board.getBoard()[7][5].getPiece().getName());
+    }
 }
